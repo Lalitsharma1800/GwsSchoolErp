@@ -1,0 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sekuya&family=Stack+Sans+Text:wght@200..700&family=Zalando+Sans+Expanded:wght@200&display=swap');
+
+@import 'tailwindcss';
+
+@theme{
+  --breakpoint-smallMobile: 248px;
+  --breakpoint-small: 340px;
+  --breakpoint-medium: 970px;
+  --font-montserrat:"Montserrat", sans-serif;
+
+}
