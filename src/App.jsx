@@ -12,10 +12,7 @@ function App() {
         path:"/",
         element: <ERPLandingPage />
       },
-     {
-        path:"/ERPLoginPage",
-        element: <ERPLoginPage />
-     }
+     
     ]
   )
 
