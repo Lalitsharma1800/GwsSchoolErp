@@ -18,14 +18,15 @@ export default function ERPLoginPage({loginBtn, setLoginBtn}) {
   }
  
   return (
-     <>
+     <div className=" w-full h-screen flex justify-center items-center">
 
       {  // if login button clicked 
         loginBtn && <div  className=" w-full py-1 flex justify-center items-center">
 
-              <div className="h-full w-4/5 small:w-[63%]  sm:w-2/5 lg:w-120 rounded-2xl bg-neutral-200">
+              <div className="h-full w-4/5 small:w-[63%]  sm:w-2/5 lg:w-120 rounded-2xl bg-neutral-200 ">
 
-                <div className=" flex justify-end items-center mt-1 mr-1"><img src={icon} className="w-6 cursor-pointer" alt="" onClick={(e) => {
+                  
+                <div className=" flex justify-end items-center mt-1 mr-1"><img src={icon} className="w-5 md:w-6 cursor-pointer" alt="" onClick={(e) => {
                   return (setLoginBtn(false))
                   
                 }}/></div>
@@ -33,7 +34,7 @@ export default function ERPLoginPage({loginBtn, setLoginBtn}) {
 
                 
 
-                <form action="" onSubmit={handleSubmit} className="flex flex-col justify-center items-center my-10 gap-5 w-full ">
+                <form action="" onSubmit={handleSubmit} className="flex flex-col justify-center items-center my-5 gap-5 w-full ">
                     
                     
                     
@@ -75,6 +76,6 @@ export default function ERPLoginPage({loginBtn, setLoginBtn}) {
                   </div>
       }
 
-    </>
+    </ div>
   );
 }
