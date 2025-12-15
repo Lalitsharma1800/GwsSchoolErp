@@ -4,6 +4,7 @@ import {Link, NavLink, createBrowserRouter, RouterProvider} from 'react-router-d
 
 import ERPFooter from './Components/ERP/ERPFooter/ERPFooter'
 import ERPLoginPage from './Components/ERP/ERPLoginPage/ERPLoginPage'
+import { Developer } from './pages/DeveloperRole/Developer'
 
 function App() {
   const router = createBrowserRouter(
@@ -12,7 +13,10 @@ function App() {
         path:"/",
         element: <ERPLandingPage />
       },
-     
+     {
+      path:"/Developer",
+      element: <Developer/>
+     }
     ]
   )
 
