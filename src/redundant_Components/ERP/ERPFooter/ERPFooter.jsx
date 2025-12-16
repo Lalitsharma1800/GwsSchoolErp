@@ -2,6 +2,7 @@ import React from "react";
 
 function ERPFooter(){
     return(
+        
          <footer className="">
           <div className="bg-neutral-400 w-full h-0.5  mb-3"></div>
 
@@ -55,4 +56,5 @@ function ERPFooter(){
         
     )
 }
+
 export default ERPFooter;

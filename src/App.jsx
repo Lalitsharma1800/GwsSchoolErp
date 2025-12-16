@@ -1,17 +1,14 @@
 import { useState } from 'react'
-import ERPLandingPage from './Components/ERP/ERPLandingPage/ERPLandingPage'
-import {Link, NavLink, createBrowserRouter, RouterProvider} from 'react-router-dom'
+import {LoginPage} from './features/login/LoginPage'
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
-import ERPFooter from './Components/ERP/ERPFooter/ERPFooter'
-import ERPLoginPage from './Components/ERP/ERPLoginPage/ERPLoginPage'
-import { Developer } from './pages/DeveloperRole/Developer'
 
 function App() {
   const router = createBrowserRouter(
     [
       {
         path:"/",
-        element: <ERPLandingPage />
+        element: <LoginPage />
       },
      {
       path:"/Developer",
@@ -21,9 +18,11 @@ function App() {
   )
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+ 
+      <div>
+        <RouterProvider router={router} />
+      </div>
+
   )
 }
 
