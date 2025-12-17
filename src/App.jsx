@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {LoginPage} from './features/login/LoginPage'
+import LoginPage from './features/login/loginLayout/LoginPage'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 
@@ -8,12 +8,8 @@ function App() {
     [
       {
         path:"/",
-        element: <LoginPage />
-      },
-     {
-      path:"/Developer",
-      element: <Developer/>
-     }
+        element: <LoginPage/>
+      }
     ]
   )
 
