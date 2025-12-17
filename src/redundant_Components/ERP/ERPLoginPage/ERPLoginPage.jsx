@@ -4,7 +4,6 @@ import icon from "../../../assests/cross_icon.svg";
 import { login } from "../../../services/auth_service";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../../supabaseApi/supabase_Client";
-import { createClient } from '@supabase/supabase-js'
 
 
 
@@ -19,7 +18,7 @@ const [error, setError] = useState("")
 const navigate = useNavigate();
 
 
-// const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY)
+// const   supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY)
 
  const [isLoggedIn, setIsLoggedIn] = useState(false);
 

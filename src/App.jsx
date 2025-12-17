@@ -1,25 +1,27 @@
-import { useState } from 'react'
-import LoginPage from './features/login/loginLayout/LoginPage'
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+// import LoginPage from './features/login/loginLayout/LoginPage'
+// import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 
 
-function App() {
-  const router = createBrowserRouter(
-    [
-      {
-        path:"/",
-        element: <LoginPage/>
-      }
-    ]
-  )
+// function App() {
+//   const routes = createBrowserRouter(
+//     [
+//       {
+//         path:"/",
+//         element: <LoginPage/>
+//       }
+//     ]
+//   )
 
-  return (
+//   return (
  
-      <div>
-        <RouterProvider router={router} />
-      </div>
+//       <div>
+//         <RouterProvider router={routes} />
+//       </div>
 
-  )
-}
+//   )
+// }
 
-export default App
+// export default App
+
+// ----------------x-------------------x------------------
+// Above code moved to main.jsx

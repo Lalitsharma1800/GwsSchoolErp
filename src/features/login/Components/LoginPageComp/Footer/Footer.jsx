@@ -5,7 +5,7 @@ export default function Footer(){
     
     return(
     
-    <footer className='w-full'> 
+    <footer className='w-full absolute bottom-4'> 
         
         {/* black straight line */}
         <div className='bg-neutral-200  h-px'></div>
