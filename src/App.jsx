@@ -1,27 +1,46 @@
-// import LoginPage from './features/login/loginLayout/LoginPage'
-// import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider  } from "react-router-dom"
+import { LoginPage, AdminDashboardPage, StudentDashboardPage, TeacherDashboardPage } from "./Page"
+import {AdminLoader, StudentLoader, TeacherLoader} from "./Loaders/index"
 
 
-// function App() {
-//   const routes = createBrowserRouter(
-//     [
-//       {
-//         path:"/",
-//         element: <LoginPage/>
-//       }
-//     ]
-//   )
 
-//   return (
- 
-//       <div>
-//         <RouterProvider router={routes} />
-//       </div>
 
-//   )
-// }
+export default function App(){
 
-// export default App
 
-// ----------------x-------------------x------------------
-// Above code moved to main.jsx
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            children:[
+                {
+                    path: "",
+                    element:<LoginPage/>
+                },
+                {
+                    path: "/admin",
+                    element: <AdminDashboardPage/>,
+                    loader: AdminLoader
+                },
+                {
+                    path: "/student",
+                    element: <StudentDashboardPage/>,
+                    loader: StudentLoader
+                },
+                {
+                    path: "/teacher",
+                    element: <TeacherDashboardPage/>,
+                    loader: TeacherLoader
+                },
+                {
+                    hydrateFallbackElement: <div>Loading...</div>
+                }
+                
+
+            ]
+        }
+    ])
+
+    return(
+       <RouterProvider router={router}/>
+    )
+}

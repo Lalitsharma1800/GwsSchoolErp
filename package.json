@@ -12,10 +12,13 @@
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@reduxjs/toolkit": "^2.11.2",
     "@supabase/supabase-js": "^2.87.1",
     "@tailwindcss/vite": "^4.1.18",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "react-hook-form": "^7.69.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.10.1",
     "tailwindcss": "^4.1.18"
   },
