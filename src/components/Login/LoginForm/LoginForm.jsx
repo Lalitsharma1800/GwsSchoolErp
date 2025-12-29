@@ -24,10 +24,7 @@ export default function LoginForm(){
         
         try {
           const role = await login(data.email, data.Password)
-
-          console.log(role)
           navigate(`/${role}`)
-
         } 
         catch (error) {
           setErr(error.message);

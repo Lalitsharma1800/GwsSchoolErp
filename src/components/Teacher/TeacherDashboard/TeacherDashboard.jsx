@@ -5,7 +5,7 @@ import {examIcon,  feeIcon, noticeicon, recordIcon,
 
 export default function TeacherDashboard(){
     return(
-        <div className="w-full h-screen bg-neutral-200">
+        <div className="w-full h-auto pb-2 bg-neutral-200">
 
             <div className="w-auto flex justify-center items-center  ">
                 <h1 className="font-Roboto w-auto  text-2xl lg:text-3xl 2xl:text-5xl  py-4 px-12 text-center my-4 text-white bg-[#05424D] border border-black mx-1 md:mx-4 rounded-2xl">Teacher Dashboard</h1>

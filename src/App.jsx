@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider  } from "react-router-dom"
 import { LoginPage, AdminDashboardPage, StudentDashboardPage, TeacherDashboardPage } from "./Page"
 import {AdminLoader, StudentLoader, TeacherLoader} from "./Loaders/index"
+import { Suspense } from "react"
+import Loading from "./components/Loading/Loading"
 
 
 
@@ -14,29 +16,31 @@ export default function App(){
             children:[
                 {
                     path: "",
-                    element:<LoginPage/>
+                    element:<LoginPage/>,
+                    HydrateFallback:Loading
                 },
                 {
                     path: "/admin",
-                    element: <AdminDashboardPage/>,
-                    loader: AdminLoader
+                    element: <Suspense fallback ={<Loading/>}><AdminDashboardPage/></Suspense>,
+                    loader: AdminLoader,
+                    HydrateFallback:Loading
                 },
                 {
                     path: "/student",
-                    element: <StudentDashboardPage/>,
-                    loader: StudentLoader
+                    element:<Suspense fallback ={<Loading/>}><StudentDashboardPage/></Suspense>,
+                    loader: StudentLoader,
+                    HydrateFallback:Loading
                 },
                 {
                     path: "/teacher",
-                    element: <TeacherDashboardPage/>,
-                    loader: TeacherLoader
+                    element: <Suspense fallback ={<Loading/>}><TeacherDashboardPage/></Suspense>,
+                    loader: TeacherLoader,
+                    HydrateFallback:Loading
                 },
-                {
-                    hydrateFallbackElement: <div>Loading...</div>
-                }
-                
-
             ]
+        },
+        {
+                    hydrateFallbackElement: <div>Loading...</div>
         }
     ])
 
