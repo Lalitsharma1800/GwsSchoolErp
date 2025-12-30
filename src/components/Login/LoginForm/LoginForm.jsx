@@ -33,7 +33,8 @@ export default function LoginForm(){
     
 
 return(
-        <main className='w-full  mt-3 flex flex-col justify-center items-center gap-2 max-w-2xl mx-auto '>
+
+        <main className='w-full  pt-3 flex flex-col justify-center items-center gap-2 max-w-2xl mx-auto '>
             
                             {/* main tag => welcome paragraph starts */}
 
@@ -108,4 +109,5 @@ return(
 
                             {/*  login form ends */}
         </main>
+       
 )}

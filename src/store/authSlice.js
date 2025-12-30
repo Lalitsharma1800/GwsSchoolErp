@@ -23,6 +23,15 @@ const authSlice = createSlice({
         setSession: (state, action) => {
             state.session = action.payload;
         },
+        setEmail: (state, action) => {
+            state.userData.gmail = action.payload;
+        },
+        setUserId: (state, action) => {
+            state.userData.id = action.payload;
+        },
+        setName: (state, action) => {
+            state.userData.name = action.payload;
+        },
         loggedin: (state, action) => {
             state.status  = true;
         },
@@ -34,6 +43,6 @@ const authSlice = createSlice({
 
 })
 
-export const {loggedin, loggedout, setSession, setRole} = authSlice.actions;
+export const {loggedin, loggedout, setSession, setRole, setEmail, setName, setUserId} = authSlice.actions;
 
 export default authSlice.reducer;

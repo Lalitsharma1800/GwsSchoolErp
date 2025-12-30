@@ -1,0 +1,53 @@
+import { supabase } from "../../supabase";
+
+export async function teacher_data(){
+const { data, error } = await supabase
+  .from('class_teacher')
+  .select(`
+    classes(
+    class_name
+    ),
+    teachers(
+    user_id,
+    name,
+    phone
+    )
+     `)
+
+     
+     console.log(data)
+  if(error){
+    throw error;
+  }
+  return data;
+};
+
+
+export async function  teacherCount() {
+
+    const { count, error } = await supabase
+                            .from("teachers")
+                            .select("*", { count: "exact", head: true });
+    
+    if (error) throw error;
+
+    return count;
+    
+};
+
+
+export async function teacher_details(id){
+let { data, error } = await supabase
+  .from('teachers')
+  .select(`
+    qualification, subjects 
+     `)
+     .eq('user_id', id)
+
+  if(error){
+    console.log(error)
+    throw error;
+  }
+  return data;
+};
+  

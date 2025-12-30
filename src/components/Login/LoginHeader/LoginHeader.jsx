@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 export default function LoginHeader(){
 
 return(
-    <header  className='bg-neutral-200  border-b  w-full h-16 flex justify-around items-center '>
+    <header  className='bg-neutral-200 border-b  w-full h-16 flex justify-around items-center '>
             
             <div className='bg-neutral-200  border-b w-full h-16 flex justify-between items-center md:max-w-4xl mx-3'>
             

@@ -3,9 +3,9 @@ import Card from "../../Admin/Card/Card"
 import { examIcon,  feeIcon,  noticeicon, 
          resulticon,    calendarIcon,    } from "./../../../assets/index"
 
-export default function StudentDashboard(){
-
-        const student_Name = "Student"
+export default function StudentDashboard({
+    student_Name = "Student"
+}){
 
     return(
         <div className=" w-full min-h-screen ">

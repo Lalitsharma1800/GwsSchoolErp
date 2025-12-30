@@ -1,6 +1,6 @@
 import { supabase } from "./supabase";
 import store from "./../store/store"
-import { loggedin, loggedout, setSession, setRole } from "./../store/authSlice";
+import { loggedin, loggedout, setSession, setRole, setEmail, setUserId, setName } from "./../store/authSlice";
 
 // it contains login, logout, change pass, and add user
 
@@ -37,12 +37,12 @@ export async function getSession() {
         
         if(error || !data || !data.session){ 
             
-            if(!data || data && !data.session) {throw new Error("Session not found1")}
+            if(!data || data && !data.session) {return data}
 
             throw new Error("Session not found2")};
 
         store.dispatch(setSession(data.session));
-        return data.session;
+        return data;
     }
     catch(error){
         throw error;
@@ -56,8 +56,10 @@ export async function getUser() {
         const {data,error} = await supabase.auth.getUser();
 
         if(error || !data || !data.user){
-            throw new Error("Invalid Credentials and error in getuser")
+            return data;
         }
+        store.dispatch(setUserId(data.user.id))
+        store.dispatch(setEmail(data.user.email))
         return data.user;
     }
     catch(error){
@@ -68,19 +70,19 @@ export async function getUser() {
 export async function getRole(id) {
     try{
         const {data, error} =  await supabase
-                            .from('user_profiles') 
-                            .select('role') 
+                            .from('profile_users') 
+                            .select(`role,name`) 
                             .eq('id', id)
                             .single()
 
         if(error){
-            console.log(error)
                     throw error;
         }
         else if(!data ){
             console.error(`error in getrole`)
         }
         else{
+            store.dispatch(setName(data.name))
             store.dispatch(setRole(data.role))
             return data.role;
         }
@@ -111,7 +113,7 @@ export  async function login(gmail, password){
 
             try{
                 const user = await getUser();
-                if(!user) throw new Error("Invalid Credentials user not found")
+                if(!user) throw new Error("Invalid Credentials, user not found")
 
                 else{
                   const role = await getRole(user.id)

@@ -1,7 +1,6 @@
 import { examIcon,  feeIcon, stafficon, noticeicon, salleryicon, recordIcon,
          resulticon, teachericon,  studenticon, calendarIcon,    } from "../../../assets/index";
 import Card from "../Card/Card";
-import AdminHeader from "./../AdminHeader/AdminHeader";
 import { logout } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function AdminDashboard(){
 
     const navigate = useNavigate()
+    const navigateToteacher = "/admin/teacherManagement"
 
     const  handleLogOut = async () => {
         console.log("clicked")
@@ -31,7 +31,7 @@ export default function AdminDashboard(){
                         
                         <Card content="Fees Management" iconLink={feeIcon} navigationRoute={"#"}/>
                         <Card content="Sallery Management" iconLink={salleryicon} navigationRoute={"#"}/>
-                        <Card content="Teacher Management" iconLink={teachericon} navigationRoute={"#"}/>
+                        <Card content="Teacher Management" iconLink={teachericon} navigationRoute="admin/teacherManagement"/>
                         <Card content="Student Management" iconLink={studenticon} navigationRoute={"#"}/>
                         <Card content="Other Staff" iconLink={stafficon} navigationRoute={"#"}/> 
                         <Card content="Exams" iconLink={examIcon} navigationRoute={"#"}/>

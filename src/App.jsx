@@ -1,10 +1,9 @@
 import { createBrowserRouter, RouterProvider  } from "react-router-dom"
-import { LoginPage, AdminDashboardPage, StudentDashboardPage, TeacherDashboardPage } from "./Page"
+import { LoginPage, AdminDashboardPage, StudentDashboardPage, TeacherDashboardPage, } from "./Page"
 import {AdminLoader, StudentLoader, TeacherLoader} from "./Loaders/index"
-import { Suspense } from "react"
+import { Suspense, lazy } from "react"
 import Loading from "./components/Loading/Loading"
-
-
+import { TeacherManagement, AdminDashboard } from "./components"
 
 
 export default function App(){
@@ -21,9 +20,19 @@ export default function App(){
                 },
                 {
                     path: "/admin",
-                    element: <Suspense fallback ={<Loading/>}><AdminDashboardPage/></Suspense>,
+                     element: <Suspense fallback ={<Loading/>}><AdminDashboardPage/></Suspense>,
                     loader: AdminLoader,
-                    HydrateFallback:Loading
+                    HydrateFallback:Loading,
+                    children:[
+                        {
+                            path: "",
+                            element: <AdminDashboard/>
+                        },
+                        {
+                            path: "teacherManagement",
+                            element: <TeacherManagement/>
+                        }
+                    ]
                 },
                 {
                     path: "/student",
@@ -37,10 +46,12 @@ export default function App(){
                     loader: TeacherLoader,
                     HydrateFallback:Loading
                 },
+                
             ]
         },
         {
-                    hydrateFallbackElement: <div>Loading...</div>
+            path: "/*",
+            element: <div className="w-full h-screen fixed text-2xl text-black grid place-content-center">Error 404, Page Not Found</div>
         }
     ])
 

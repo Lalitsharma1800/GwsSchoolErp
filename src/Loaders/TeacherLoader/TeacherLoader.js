@@ -4,8 +4,8 @@ import { getSession, getUser, getRole } from "../../supabase/index";
 
 
 export default async function TeacherLoader() {
-    const session = await getSession()
-     if(!session){
+     const data = await getSession()
+     if(data.session === null || data.session === undefined){
             throw redirect("/");
     } 
     const user = await getUser()

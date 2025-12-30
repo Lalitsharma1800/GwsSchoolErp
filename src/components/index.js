@@ -6,9 +6,10 @@ import AdminDashboard from "./Admin/AdminDashboard/AdminDashboard";
 import Header from "./Header/Header"; // it is used in teacher  pages
 import TeacherDashboard from "./Teacher/TeacherDashboard/TeacherDashboard";
 import StudentDashboard from "./Student/StudentDashboard/StudentDashboard"
+import TeacherManagement from "./Admin/TeacherManagement/TeacherManagement";
 
 export {LoginHeader, LoginForm, LoginFooter, AdminHeader, AdminDashboard,Header,StudentDashboard,
-    TeacherDashboard,
+    TeacherDashboard,TeacherManagement
 
 
 }

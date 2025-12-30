@@ -2,6 +2,7 @@ import { navbarIcon,profileicon } from "./../../assets/index"
 
 
 export default function Header({
+        name = "user",
         toggleSidebar,
 }){
     return(
@@ -20,7 +21,7 @@ export default function Header({
                     <button className="w-9  h-8 cursor-pointer  rounded-2xl hover:bg-neutral-300 flex justify-center items-center"><img className="m-2 w-6 rounded-2xl" src={profileicon} alt="" /></button>
                                     
                     <div className="hidden sm:flex justify-center items-center gap-2">
-                        <div className="font-medium font-serif  xl:text-2xl">Lalit Sharma</div>
+                        <div className="font-medium font-serif  xl:text-2xl">{name}</div>
                     </div>
                 </div>
             </header>

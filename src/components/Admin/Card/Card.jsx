@@ -14,7 +14,7 @@ export default function Card({
             <button 
             className="bg-[#136B78] text-white border border-black rounded-lg 
               hover:opacity-70  transition duration-300 hover:shadow-lg/30  cursor-pointer
-            lg:text-xl px-3 py-0 pb-1  sm:px-5 lg:mt-4  lg:py-2 2xl:text-5xl 2xl:py-4 2xl:relative -bottom-14" onClick={(e) => navigate({navigationRoute})}>Click here</button>
+            lg:text-xl px-3 py-0 pb-1  sm:px-5 lg:mt-4  lg:py-2 2xl:text-5xl 2xl:py-4 2xl:relative -bottom-14" onClick={(e) => navigate(`/${navigationRoute}`)}>Click here</button>
             </div>
     )
 }
