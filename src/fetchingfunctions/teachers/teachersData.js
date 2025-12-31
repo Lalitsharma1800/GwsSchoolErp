@@ -13,9 +13,6 @@ const { data, error } = await supabase
     phone
     )
      `)
-
-     
-     console.log(data)
   if(error){
     throw error;
   }
@@ -37,17 +34,18 @@ export async function  teacherCount() {
 
 
 export async function teacher_details(id){
+
 let { data, error } = await supabase
   .from('teachers')
   .select(`
     qualification, subjects 
      `)
      .eq('user_id', id)
-
   if(error){
     console.log(error)
     throw error;
   }
+ 
   return data;
 };
   
