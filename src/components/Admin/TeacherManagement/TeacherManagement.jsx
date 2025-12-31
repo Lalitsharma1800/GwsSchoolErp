@@ -1,9 +1,7 @@
-import { teacher_data } from "../../../fetchingfunctions/teachers/teachersData";
 import FacultyCard from "./../../FacultyCard/FacultyCard"
 import { useEffect, useState } from "react";
-import { teacherCount } from "../../../fetchingfunctions/teachers/teachersData";
-import { teacher_details } from "../../../fetchingfunctions/teachers/teachersData";
-import TeacherDetails from "../teacherdetailsComponent/TeacherDetailsComponent";
+import { teacher_data, teacherCount, teacher_details } from "../../../fetchApi";
+import TeacherDetails from "../teacherdetailsComponent/TeacherDetails.jsx/TeacherDetailsComponent";
 
 
 export default function TeacherManagement(){
@@ -13,19 +11,25 @@ export default function TeacherManagement(){
     const [data, setData] = useState(null)
     const [moreDetails, setMoreDetails] = useState(null)
     const [index, setIndex] = useState(null)
-    const [editable, SetEditable] = useState(false)
-    const [showMoreDetails, setShowMoreDetails] = useState(true)
+    const editable = false;
+    const [loading1, setloading1] = useState(false)
+    const [loading2, setloading2] = useState(false)
 
    
 
     const moreDetailBtn = async (id,index) => {
+        
            try{
              const details = await teacher_details(id)
              setMoreDetails(details)
              setIndex(index)
+             setloading2(false)
             }
            catch(error){
             throw error;
+           }
+           finally{
+            
            }
         }
 
@@ -37,6 +41,9 @@ export default function TeacherManagement(){
         catch(error){
             throw error;
         } 
+        finally{
+            setloading1(!loading1)
+        }
     }
 
     useEffect(() => {
@@ -63,7 +70,7 @@ export default function TeacherManagement(){
                     
 
                         <div className="w-auto   flex justify-center items-center  ">
-                            <div className="font-Roboto w-auto  sm:text-2xl lg:text-3xl 2xl:text-5xl  py-4 px-12 text-center my-4 text-white bg-[#05424D] border border-black mx-1 md:mx-4 rounded-2xl">Teacher Management</div>
+                            <div className="font-Roboto w-auto  sm:text-2xl lg:text-3xl 2xl:text-5xl py-1 px-2 sm:py-4 sm:px-12 text-center my-4 text-white bg-[#05424D] border border-black mx-1 md:mx-4 rounded-2xl">Teacher Management</div>
                         </div> 
 
                         <div className="m-3   flex  sm:flex-row justify-center items-center flex-wrap gap-x-3.5 gap-y-2">
@@ -94,12 +101,16 @@ export default function TeacherManagement(){
                                     <tbody>
                                             { data &&
                                                 data.map((row,index) => (
-                                                <tr key={`${row.teachers.user_id}`}>
+                                                <tr key={`${row.teachers.id}`}>
                                                     <td  className="text-center whitespace-nowrap border border-black px-2">{index+1}</td>
                                                     <td  className="text-center whitespace-nowrap border border-black px-2">{row.classes?.class_name}</td>
                                                     <td  className="text-center whitespace-nowrap border border-black px-2">{row.teachers?.name}</td>
                                                     <td className="text-center whitespace-nowrap border border-black px-2">{row.teachers?.phone}</td>
-                                                    <td className="text-center whitespace-nowrap border border-black px-2"><button onClick={async () => await moreDetailBtn(row.teachers.user_id,index)}  className="bg-neutral-200 cursor-pointer px-3 m-1 rounded-lg  text-black outline-1">Click </button></td>
+                                                    <td className="text-center whitespace-nowrap border border-black px-2">
+                                                        <button onClick={async () =>{ setloading2(!loading2)
+                                                                                    await moreDetailBtn(row.teachers.id,index)     
+                                                        }} className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer"  >Click</button>
+                                                    </td>
                                                 </tr>
                                                 ))
                                             }
@@ -118,26 +129,45 @@ export default function TeacherManagement(){
 
                             <div className="px-3 mb-3 hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">
                                 {searched && <div>Print</div>}
-                                {!searched && <button  onClick={async (e) => {await handleSearch()
-                                setSearched(true)
-                                }} className="cursor-pointer" >Search</button>}
+                                {!searched && 
+                                <div>
+                                    {!loading1
+                                     && 
+                                    <button  
+                                    onClick={async () => {
+                                    setloading1(!loading1)
+                                    await handleSearch()
+                                    setSearched(true)
+                                    }} className="cursor-pointer" >Search</button>}
+                                    {loading1
+                                    && 
+                                    <div className=" m-1 w-4  h-4 border-2  border-white border-t-transparent
+                                     rounded-full animate-spin">
+                                    </div>}
+                                </div>
+                                }
                             </div>
                         </div>
 
                                
 
                         {
-                           moreDetails  && <TeacherDetails  defaultName={data[index].teachers.name}
+                           !loading2   && <TeacherDetails  id={data[index].teachers.id}  
+                                                            defaultName={data[index].teachers.name}
                                                             defaultClass={data[index].classes.class_name}
                                                             defaultPhone={data[index].teachers.phone}   
-                                                            defaultAge="20 years"
-                                                            defaultGender={"Male"}
-                                                            defaultSubject={moreDetails[0].subjects}
-                                                            defaultQualification={moreDetails[0].qualification}
-                                                            defaultExperience={"2 years"}
-                                                            adhaar={"---"}
-                                                            joined={"---"}
+                                                            defaultAge={moreDetails[0].age??"not imported"}
+                                                            defaultGender={moreDetails[0].gender??"not available"}
+                                                            defaultSubject={moreDetails[0]?.subjects}
+                                                            defaultQualification={moreDetails[0]?.qualification}
+                                                            defaultExperience={moreDetails[0].experience??"not available"}
+                                                            adhaar={moreDetails[0].aadhar??"not available"}
+                                                            joined={moreDetails[0].joined??"not available"}
                                                             editable = {editable} />
+                        
+                        }
+                        {
+                            loading2  && <div className="w-full  flex justify-center items-center"><div className=" m-1 w-8  h-8 border-2 bg-neutral-200 border-black border-t-transparent rounded-full animate-spin"></div></div>
                         }
                 </div>
 

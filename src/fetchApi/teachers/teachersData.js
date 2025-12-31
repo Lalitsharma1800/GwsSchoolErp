@@ -8,7 +8,7 @@ const { data, error } = await supabase
     class_name
     ),
     teachers(
-    user_id,
+    id,
     name,
     phone
     )
@@ -38,9 +38,9 @@ export async function teacher_details(id){
 let { data, error } = await supabase
   .from('teachers')
   .select(`
-    qualification, subjects 
+    qualification, subjects,age,gender,joined,experience,aadhar
      `)
-     .eq('user_id', id)
+     .eq('id', id)
   if(error){
     console.log(error)
     throw error;
