@@ -3,16 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
    teacherInfo: {
+        id: "",
         name: "",
-        phone: "",
+        classname: "",
         age: "",
         gender: "",
+        phone: "",
         subjects: "",
-        joined: "",
-        aadhar: "",
         qualification: "",
         experience: "",
-        className: "",
+        aadhar: "Not Available",
+        joined: "Not Available",
     }
 }
 

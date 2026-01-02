@@ -1,4 +1,6 @@
 import { supabase } from "../../supabase";
+import store from "../../store/store";
+import { setTeacherInfo } from "../../store/teacherInfoSlice";
 
 export async function teacher_data(){
 const { data, error } = await supabase
@@ -46,6 +48,16 @@ let { data, error } = await supabase
     throw error;
   }
  console.log(data)
+  store.dispatch(setTeacherInfo({
+    id: id,
+    age: data[0].age,
+    gender: data[0].gender,
+    subjects: data[0].subjects,
+    qualification: data[0].qualification,
+    experience: data[0].experience,
+    aadhar: data[0].aadhar,
+    joined: data[0].joined,
+  }))
   return data;
 };
   

@@ -1,35 +1,42 @@
 import FacultyCard from "./../../FacultyCard/FacultyCard"
 import { useEffect, useState } from "react";
 import { teacher_data, teacherCount, teacher_details } from "../../../fetchApi";
-import TeacherDetails from "../teacherdetailsComponent/TeacherDetails.jsx/TeacherDetailsComponent";
-
+import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
+import { setTeacherInfo } from "../../../store/teacherInfoSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function TeacherManagement(){
 
     const [searched, setSearched] = useState(false)
     const [count, setCount] = useState("")
     const [data, setData] = useState(null)
-    const [moreDetails, setMoreDetails] = useState(null)
-    const [index, setIndex] = useState(null)
-    const editable = false;
+    const [showMoreDetails, setShowMoreDetails] = useState(false)
     const [loading1, setloading1] = useState(false)
     const [loading2, setloading2] = useState(false)
-
+    const dispatch = useDispatch();
    
-
+    const teacher = useSelector(state => state.teacherInfo.teacherInfo)
     const moreDetailBtn = async (id,index) => {
-        setloading2(true)
+        
            try{
-             const details = await teacher_details(id)
-             setMoreDetails(details)
-             setIndex(index)
-             
+                setShowMoreDetails(false)
+                setloading2(true)
+                await teacher_details(id) 
+                    dispatch(setTeacherInfo({
+                    id: data[index]?.teachers?.id,
+                    name: data[index]?.teachers?.name,
+                    classname: data[index]?.classes?.class_name,
+                    phone: data[index]?.teachers?.phone,
+                    }
+                    ))
+
             }
            catch(error){
             throw error;
            }
            finally{
             setloading2(false)
+            setShowMoreDetails(true)
            }
         }
 
@@ -45,7 +52,7 @@ export default function TeacherManagement(){
         finally{
             setloading1(false)
         }
-    }
+    };
 
     useEffect(() => {
        async function teacher_count(){
@@ -58,7 +65,7 @@ export default function TeacherManagement(){
         }
        }
         teacher_count();
-    },[])
+    },[]);
 
     
     
@@ -110,7 +117,7 @@ export default function TeacherManagement(){
                                                     <td className="text-center whitespace-nowrap border border-black px-2">
                                                         <button onClick={async () =>{ 
                                                                                     await moreDetailBtn(column.teachers.id,index)     
-                                                        }} className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer"  >Click</button>
+                                                        }} className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer"  >View</button>
                                                     </td>
                                                 </tr>
                                                 ))
@@ -153,19 +160,7 @@ export default function TeacherManagement(){
                                
 
                         {
-                           !loading2 && moreDetails  && <TeacherDetails  id={data[index]?.teachers.id}  
-                                                            defaultName={data[index]?.teachers.name}
-                                                            defaultClass={data[index]?.classes.class_name}
-                                                            defaultPhone={data[index]?.teachers.phone}   
-                                                            defaultAge={moreDetails[0]?.age??"not imported"}
-                                                            defaultGender={moreDetails[0]?.gender??"not available"}
-                                                            defaultSubject={moreDetails[0]?.subjects}
-                                                            defaultQualification={moreDetails[0]?.qualification}
-                                                            defaultExperience={moreDetails[0]?.experience??"not available"}
-                                                            adhaar={moreDetails[0]?.aadhar??"not available"}
-                                                            joined={moreDetails[0]?.joined??"not available"}
-                                                            editable = {editable} />
-                        
+                           !loading2 && showMoreDetails  && <TeacherDetails/>
                         }
                         {
                             loading2  && <div className="w-full  flex justify-center items-center"><div className=" m-1 w-8  h-8 border-2 bg-neutral-200 border-black border-t-transparent rounded-full animate-spin"></div></div>
