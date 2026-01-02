@@ -14,7 +14,8 @@ const initialState = {
         experience: "",
         aadhar: "Not Available",
         joined: "Not Available",
-    }
+    },
+    updatedId: []
 }
 
 const teacherInfoSlice = createSlice({

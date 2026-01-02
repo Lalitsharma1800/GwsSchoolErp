@@ -1,31 +1,52 @@
-import { useEffect, useState } from "react"
-import { editTeacherData } from "../../../../updateApi"
-import TeacherDetailsLine from "../TeacherDetailsLine.jsx/TeacherDetailsLine"
-import { setTeacherInfo } from "../../../../store/teacherInfoSlice"
+import {  useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 
-export default function TeacherDetails(){
 
-    const [edit, setEdit] = useState(false)
+import { editTeacherData } from "../../../../updateApi"
+import { setTeacherInfo } from "../../../../store/teacherInfoSlice"
+import TeacherDetailsLine from "../TeacherDetailsLine.jsx/TeacherDetailsLine"
+
+
+
+export default function TeacherDetails({setdata}){
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(false)
+
     const teacher = useSelector((state) => state.teacherInfo.teacherInfo);
     
-    const handleSave = async (teacher) => {
+    const [edit, setEdit] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    
+    const handleSave = async () => {
+
         try{
             setLoading(true)
-            const data = await editTeacherData(teacher);
-            console.log("data:")
-            console.log(data)
+
+            await editTeacherData(teacher);
+            
+            setdata((prev) =>
+                prev.map(row =>
+                    row.teachers.id === teacher.id
+                        ? {
+                            ...row,
+                            teachers: {
+                                ...row.teachers,
+                                name: teacher.name,
+                                phone: teacher.phone,
+                            },
+                            }
+                        : row
+                )
+            );
         }
         catch(error){
             console.error(error)
         }
         finally{
-            setEdit(!edit)
-             setLoading(false)
+            setEdit(false)
+            setLoading(false)
         }
-    }
+    };
     
 
     return(
@@ -49,7 +70,7 @@ export default function TeacherDetails(){
                                 <div className="flex justify-center items-center"> 
                                     {!edit && <button onClick={() => setEdit(!edit)}  className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">Edit</button>}  
                                     {edit  && <div  className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">{loading && <div className=" m-1 w-4  h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}{!loading && <button  onClick={() =>{
-                                         handleSave(teacher)
+                                         handleSave()
                                     }}>Save</button>}</div>}
                                 
                                 </div>

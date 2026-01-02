@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { teacher_data, teacherCount, teacher_details } from "../../../fetchApi";
 import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
 import { setTeacherInfo } from "../../../store/teacherInfoSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function TeacherManagement(){
 
@@ -15,7 +15,6 @@ export default function TeacherManagement(){
     const [loading2, setloading2] = useState(false)
     const dispatch = useDispatch();
    
-    const teacher = useSelector(state => state.teacherInfo.teacherInfo)
     const moreDetailBtn = async (id,index) => {
         
            try{
@@ -51,6 +50,7 @@ export default function TeacherManagement(){
         } 
         finally{
             setloading1(false)
+            setSearched(true)
         }
     };
 
@@ -122,7 +122,7 @@ export default function TeacherManagement(){
                                                 </tr>
                                                 ))
                                             }
-                                            { searched && data?.length === 0 && (
+                                            { !searched  && (
                                             <tr>
                                                 <td colSpan="5">No data found</td>
                                             </tr>
@@ -143,9 +143,8 @@ export default function TeacherManagement(){
                                      && 
                                     <button  
                                     onClick={async () => {
-                                    setloading1(!loading1)
                                     await handleSearch()
-                                    setSearched(true)
+                                    
                                     }} className="cursor-pointer" >Search</button>}
                                     {loading1
                                     && 
@@ -160,7 +159,7 @@ export default function TeacherManagement(){
                                
 
                         {
-                           !loading2 && showMoreDetails  && <TeacherDetails/>
+                           !loading2 && showMoreDetails  && <TeacherDetails setdata={setData}/>
                         }
                         {
                             loading2  && <div className="w-full  flex justify-center items-center"><div className=" m-1 w-8  h-8 border-2 bg-neutral-200 border-black border-t-transparent rounded-full animate-spin"></div></div>
