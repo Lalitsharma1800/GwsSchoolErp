@@ -18,23 +18,24 @@ export default function TeacherManagement(){
    
 
     const moreDetailBtn = async (id,index) => {
-        
+        setloading2(true)
            try{
              const details = await teacher_details(id)
              setMoreDetails(details)
              setIndex(index)
-             setloading2(false)
+             
             }
            catch(error){
             throw error;
            }
            finally{
-            
+            setloading2(false)
            }
         }
 
     const handleSearch = async () => {
         try{
+            setloading1(true)
             const data = await teacher_data();
             setData(data)
         }
@@ -42,7 +43,7 @@ export default function TeacherManagement(){
             throw error;
         } 
         finally{
-            setloading1(!loading1)
+            setloading1(false)
         }
     }
 
@@ -100,26 +101,26 @@ export default function TeacherManagement(){
                                 
                                     <tbody>
                                             { data &&
-                                                data.map((row,index) => (
-                                                <tr key={`${row.teachers.id}`}>
+                                                data.map((column,index) => (
+                                                <tr key={`${column.teachers.id}`}>
                                                     <td  className="text-center whitespace-nowrap border border-black px-2">{index+1}</td>
-                                                    <td  className="text-center whitespace-nowrap border border-black px-2">{row.classes?.class_name}</td>
-                                                    <td  className="text-center whitespace-nowrap border border-black px-2">{row.teachers?.name}</td>
-                                                    <td className="text-center whitespace-nowrap border border-black px-2">{row.teachers?.phone}</td>
+                                                    <td  className="text-center whitespace-nowrap border border-black px-2">{column.classes?.class_name}</td>
+                                                    <td  className="text-center whitespace-nowrap border border-black px-2">{column.teachers?.name}</td>
+                                                    <td className="text-center whitespace-nowrap border border-black px-2">{column.teachers?.phone}</td>
                                                     <td className="text-center whitespace-nowrap border border-black px-2">
-                                                        <button onClick={async () =>{ setloading2(!loading2)
-                                                                                    await moreDetailBtn(row.teachers.id,index)     
+                                                        <button onClick={async () =>{ 
+                                                                                    await moreDetailBtn(column.teachers.id,index)     
                                                         }} className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer"  >Click</button>
                                                     </td>
                                                 </tr>
                                                 ))
                                             }
-                                            {
-                                                !data &&
-                                                <tr>
-                                                    <td  className="font-bold">No data to show</td>
-                                                </tr>
-                                            }
+                                            { searched && data?.length === 0 && (
+                                            <tr>
+                                                <td colSpan="5">No data found</td>
+                                            </tr>
+                                            )}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -152,17 +153,17 @@ export default function TeacherManagement(){
                                
 
                         {
-                           !loading2   && <TeacherDetails  id={data[index].teachers.id}  
-                                                            defaultName={data[index].teachers.name}
-                                                            defaultClass={data[index].classes.class_name}
-                                                            defaultPhone={data[index].teachers.phone}   
-                                                            defaultAge={moreDetails[0].age??"not imported"}
-                                                            defaultGender={moreDetails[0].gender??"not available"}
+                           !loading2 && moreDetails  && <TeacherDetails  id={data[index]?.teachers.id}  
+                                                            defaultName={data[index]?.teachers.name}
+                                                            defaultClass={data[index]?.classes.class_name}
+                                                            defaultPhone={data[index]?.teachers.phone}   
+                                                            defaultAge={moreDetails[0]?.age??"not imported"}
+                                                            defaultGender={moreDetails[0]?.gender??"not available"}
                                                             defaultSubject={moreDetails[0]?.subjects}
                                                             defaultQualification={moreDetails[0]?.qualification}
-                                                            defaultExperience={moreDetails[0].experience??"not available"}
-                                                            adhaar={moreDetails[0].aadhar??"not available"}
-                                                            joined={moreDetails[0].joined??"not available"}
+                                                            defaultExperience={moreDetails[0]?.experience??"not available"}
+                                                            adhaar={moreDetails[0]?.aadhar??"not available"}
+                                                            joined={moreDetails[0]?.joined??"not available"}
                                                             editable = {editable} />
                         
                         }

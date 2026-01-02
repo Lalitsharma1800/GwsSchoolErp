@@ -55,6 +55,7 @@ export default function TeacherDetails({
 
      const handleSave = async (teacher) => {
         try{
+            setLoading(true)
             const data = await editTeacherData(teacher);
             console.log("data:")
             console.log(data)
@@ -76,7 +77,7 @@ export default function TeacherDetails({
             throw error;
         }
         finally{
-                setEdit(!edit)
+            setEdit(!edit)
              setLoading(false)
         }
     }
@@ -92,21 +93,18 @@ export default function TeacherDetails({
                              
                                     <TeacherDetailsLine detailsName={"Age"} detailsValue={teacher.age} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, age: e.target.value}))}/>
                                     <TeacherDetailsLine detailsName={"Gender"} detailsValue={teacher.gender} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, gender: e.target.value}))}/>
-                                   
-                                 
-                                       {/* <TeacherDetails detailsName={"Gender"} detailsValue={teacher.gender} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, gender: e.target.value}))}/>
-                                    */}
-                                    <div className="sm:border border-t-white flex flex-col smallMobile:flex-row   sm:gap-3 font-semibold"> <span className=" w-40 pl-2">Phone:</span><input type="text" disabled={!edit} value={teacher.phone}  onChange={(e) => setTeacher(prev => ({...prev, phone: e.target.value}))} className="text-black w-11/12 max-w-6xl bg-white px-1 outline-0   font-medium"/></div>
-                                    <div className="sm:border border-t-white flex flex-col smallMobile:flex-row   sm:gap-3 font-semibold"> <span className=" w-40 pl-2">Qualification:</span><input type="text" disabled={!edit} value={teacher.qualification} onChange={(e) => setTeacher(prev => ({...prev, qualification: e.target.value}))}  className="text-black w-11/12 max-w-6xl outline-0 bg-white px-1   font-medium "/></div>
-                                    <div className="sm:border border-t-white flex flex-col smallMobile:flex-row   sm:gap-3 font-semibold"><span className=" w-40 pl-2"> Subjects:</span><input type="text" disabled={!edit} value={teacher.subject}  onChange={(e) => setTeacher(prev => ({...prev, subject: e.target.value}))} className="text-black bg-white px-1  w-11/12 max-w-6xl outline-0    font-medium"/></div>
-                                    <div className="sm:border border-t-white flex flex-col smallMobile:flex-row   sm:gap-3 font-semibold"><span className=" w-40 pl-2"> Experience(yr):</span><input type="text" disabled={!edit} value={teacher.experience}  onChange={(e) => setTeacher(prev => ({...prev, experience: e.target.value}))} className="text-black bg-white px-1  w-11/12 max-w-6xl outline-0    font-medium"/></div>
+                                    <TeacherDetailsLine detailsName={"Phone"} detailsValue={teacher.phone} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, phone: e.target.value}))}/>
+                                    <TeacherDetailsLine detailsName={"Aadhar No"} detailsValue={teacher.adhaar}/>
+                                    <TeacherDetailsLine detailsName={"Joined On"} detailsValue={teacher.joined}/>
+                                    <TeacherDetailsLine detailsName={"Qualification"} detailsValue={teacher.qualification} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, qualification: e.target.value}))}/>
+                                    <TeacherDetailsLine detailsName={"Subjects"} detailsValue={teacher.subject} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, subject: e.target.value}))}/>
+                                    <TeacherDetailsLine detailsName={"Experience"} detailsValue={teacher.experience} disabled={!edit} onChangeHandler={(e) => setTeacher(prev => ({...prev, experience: e.target.value}))}/>
                                     
                                   
                                 </div>
                                 <div className="flex justify-center items-center"> 
                                     {!edit && <button onClick={() => setEdit(!edit)}  className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">Edit</button>}  
                                     {edit  && <div  className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">{loading && <div className=" m-1 w-4  h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}{!loading && <button  onClick={() =>{
-                                         setLoading(true)
                                          handleSave(teacher)
                                     }}>Save</button>}</div>}
                                 

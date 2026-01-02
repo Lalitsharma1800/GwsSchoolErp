@@ -45,7 +45,7 @@ let { data, error } = await supabase
     console.log(error)
     throw error;
   }
- 
+ console.log(data)
   return data;
 };
   
