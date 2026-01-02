@@ -159,7 +159,7 @@ export default function TeacherManagement(){
                                
 
                         {
-                           !loading2 && showMoreDetails  && <TeacherDetails setdata={setData}/>
+                           !loading2 && showMoreDetails  && <TeacherDetails setTeacherList={setData}/>
                         }
                         {
                             loading2  && <div className="w-full  flex justify-center items-center"><div className=" m-1 w-8  h-8 border-2 bg-neutral-200 border-black border-t-transparent rounded-full animate-spin"></div></div>
