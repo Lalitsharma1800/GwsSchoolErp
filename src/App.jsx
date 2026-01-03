@@ -4,6 +4,7 @@ import {AdminLoader, StudentLoader, TeacherLoader} from "./Loaders/index"
 import { Suspense, lazy } from "react"
 import Loading from "./components/Loading/Loading"
 import { TeacherManagement, AdminDashboard } from "./components"
+import FeesDashboard from "./components/Admin/Fees/FeesDashboard/FeesDashboard"
 
 
 export default function App(){
@@ -20,8 +21,10 @@ export default function App(){
                 },
                 {
                     path: "/admin",
-                     element: <Suspense fallback ={<Loading/>}><AdminDashboardPage/></Suspense>,
+                    element: <Suspense fallback ={<Loading/>}><AdminDashboardPage/></Suspense>,
+                    
                     loader: AdminLoader,
+                    
                     HydrateFallback:Loading,
                     children:[
                         {
@@ -31,7 +34,11 @@ export default function App(){
                         {
                             path: "teacherManagement",
                             element: <TeacherManagement/>
-                        }
+                        },
+                        {
+                            path: "feesManagement",
+                            element: <FeesDashboard/>
+                        },
                     ]
                 },
                 {

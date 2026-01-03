@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 export default function AdminDashboard(){
 
     const navigate = useNavigate()
-    const navigateToteacher = "/admin/teacherManagement"
 
     const  handleLogOut = async () => {
         console.log("clicked")

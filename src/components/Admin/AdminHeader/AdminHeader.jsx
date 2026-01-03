@@ -1,6 +1,6 @@
 import {profileicon, navbarIcon} from "../../../assets/index"
 
-export default function AdminHeader({name,}){
+export default function AdminHeader({name}){
    
 
     return(
