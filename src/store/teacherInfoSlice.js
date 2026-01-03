@@ -15,7 +15,7 @@ const initialState = {
         aadhar: "Not Available",
         joined: "Not Available",
     },
-    updatedId: []
+    
 }
 
 const teacherInfoSlice = createSlice({

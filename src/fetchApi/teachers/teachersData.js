@@ -47,7 +47,6 @@ let { data, error } = await supabase
     console.log(error)
     throw error;
   }
- console.log(data)
   store.dispatch(setTeacherInfo({
     id: id,
     age: data[0].age,

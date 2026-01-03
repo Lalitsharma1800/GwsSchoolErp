@@ -34,7 +34,6 @@ export async function editTeacherData(teacher){
                                 experience:  data[0]?.experience,
                             })
                         )
-                        console.log(data[0].name)
                     return data;
         }  
         catch(error){

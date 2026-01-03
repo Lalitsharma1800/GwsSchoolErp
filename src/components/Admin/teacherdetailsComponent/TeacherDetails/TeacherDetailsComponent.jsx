@@ -24,7 +24,7 @@ export default function TeacherDetails({setTeacherList}){
 
             await editTeacherData(teacher);
             
-            setdata((prev) =>
+            setTeacherList((prev) =>
                 prev.map(row =>
                     row.teachers.id === teacher.id
                         ? {
