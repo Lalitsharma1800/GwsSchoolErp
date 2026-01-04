@@ -28,7 +28,7 @@ export default function AdminDashboard(){
                 <div className="w-auto  flex justify-center items-center">
                     <div className="w-auto    m-1 md:mx-4 py-4 mobile:p-4  border bg-[#F5F5F4] rounded-2xl  flex flex-wrap items-center justify-center gap-x-10 gap-3 md:gap-10">
                         
-                        <Card content="Fees Management" iconLink={feeIcon} navigationRoute={"#"}/>
+                        <Card content="Fees Management" iconLink={feeIcon} navigationRoute={"admin/feesManagement"}/>
                         <Card content="Sallery Management" iconLink={salleryicon} navigationRoute={"#"}/>
                         <Card content="Teacher Management" iconLink={teachericon} navigationRoute="admin/teacherManagement"/>
                         <Card content="Student Management" iconLink={studenticon} navigationRoute={"#"}/>
