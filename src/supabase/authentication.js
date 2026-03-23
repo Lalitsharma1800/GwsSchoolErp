@@ -6,24 +6,161 @@ import { loggedin, loggedout, setSession, setRole, setEmail, setUserId, setName 
 
 // const dispatch = useDispatch();
 
+export class Authentication{
+    async  authState() {
+                try{
+                    const { data:{subscription},error } =  supabase.auth.onAuthStateChange((event, session) => {
+
+                        if (event === 'INITIAL_SESSION') {
+                            store.dispatch(setSession(session))
+                        } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+                            getSession();
+                        } else if (event === 'SIGNED_OUT') {
+                        
+                        } else if (event === 'PASSWORD_RECOVERY') {
+                            // handle password recovery event
+                        } else {
+                            // handle user updated event
+                        }
+                        })
+
+                        return () => {
+                            subscription.unsubscribe();
+                        };
+                }
+                catch(error){
+                    throw error;
+                }
+    }
+    async  getSession() {
+        try{
+            const {data,error} = await supabase.auth.getSession();
+            
+            if(error || !data || !data.session){ 
+                throw new Error("Session not found2")
+            };
+            store.dispatch(setSession(data.session));
+            return data;
+        }
+        catch(error){
+            throw error;
+        }
+
+    }
+    async  getUser() {
+        try{
+            const {data,error} = await supabase.auth.getUser();
+
+            if(error || !data || !data.user){
+                throw error;
+            }
+            store.dispatch(setUserId(data.user.id))
+            store.dispatch(setEmail(data.user.email))
+            return data.user;
+        }
+        catch(error){
+            throw error;
+        }
+    }
+    async getRole(id) {
+        try{
+            const {data, error} =  await supabase
+                                .from('profile_users') 
+                                .select(`role,name`) 
+                                .eq('id', id)
+                                .single()
+
+            if(error){
+                        throw error;
+            }
+            else if(!data ){
+                console.error("user data not found")
+            }
+            else{
+                store.dispatch(setName(data.name))
+                store.dispatch(setRole(data.role))
+                return data.role;
+            }
+        }
+        catch(error){
+            throw error;
+        }
+    }
+    async login(gmail, password){
+        try{
+            const {data, error} = await supabase.auth.signInWithPassword({email:gmail, password: password})
+
+            if(error || !data){
+                console.log(error)
+                throw new Error("Invalid Credentials 1");
+            }
+
+            try{
+                const session = await getSession();
+
+                if(!session){
+                    throw new Error("Invalid Credential and session not found")
+                }
+
+                try{
+                    const user = await getUser();
+                    if(!user) throw new Error("Invalid Credentials, user not found")
+
+                    else{
+                        const role = await getRole(user.id)
+                        return role;
+                    }
+                    
+                }
+                catch(error){
+                    throw error;
+                }
+            }
+            catch(error){
+                throw error;
+            }
+        }
+        catch(error){
+            throw error;
+        }
+    }
+    async logout() {
+        try{
+            const { error } = await supabase.auth.signOut()
+            
+            if(error){
+                throw new Error("logout failed try again")
+            }
+            console.log("loggedOut Successfully")
+            store.dispatch(loggedout());
+        }
+        catch(error){
+            throw error;
+        }
+    }
+}
+const authentication = new Authentication();
+export default authentication;
+
+
+
 export async function authState() {
     try{
         const { data } =  supabase.auth.onAuthStateChange((event, session) => {
             console.log(event, session)
             if (event === 'INITIAL_SESSION') {
                 store.dispatch(setSession(session))
-            } else if (event === 'SIGNED_IN') {
+            } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
                 getSession();
             } else if (event === 'SIGNED_OUT') {
               
             } else if (event === 'PASSWORD_RECOVERY') {
                 // handle password recovery event
-            } else if (event === 'TOKEN_REFRESHED') {
-                getSession()
             } else if (event === 'USER_UPDATED') {
                 // handle user updated event
             }
             })
+            return data;
     }
     catch(error){
         throw error;
