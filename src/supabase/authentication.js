@@ -36,27 +36,34 @@ export class Authentication{
         try{
             const {data,error} = await supabase.auth.getSession();
             
-            if(error || !data || !data.session){ 
-                throw new Error("Session not found2")
-            };
-            store.dispatch(setSession(data.session));
-            return data;
+            const session = data.session;
+            if(error) throw error;
+            if(!data) throw new Error("System Error");
+            if(!session) throw new Error("Session Not Fount");
+    
+            store.dispatch(setSession(session));
+            return session;
         }
         catch(error){
             throw error;
         }
-
     }
     async  getUser() {
         try{
-            const {data,error} = await supabase.auth.getUser();
+            const {data:{user},error} = await supabase.auth.getUser();
+        
 
-            if(error || !data || !data.user){
+            if(!user){
+                throw new Error("User Not Found");
+            }
+            else if(error){
                 throw error;
             }
-            store.dispatch(setUserId(data.user.id))
-            store.dispatch(setEmail(data.user.email))
-            return data.user;
+            else{
+                store.dispatch(setUserId(user.id))
+                store.dispatch(setEmail(user.email))
+                return user;
+            }
         }
         catch(error){
             throw error;
@@ -74,7 +81,7 @@ export class Authentication{
                         throw error;
             }
             else if(!data ){
-                console.error("user data not found")
+                throw error("user data not found");
             }
             else{
                 store.dispatch(setName(data.name))

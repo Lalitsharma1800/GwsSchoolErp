@@ -5,6 +5,8 @@ import {
 import Card from "../Card/Card";
 import { logout } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner";
 
 
 
@@ -45,6 +47,7 @@ export default function AdminDashboard(){
                 </div>
 
                 <footer className="py-2"> <div className="bg-neutral-200 mt-3 h-0.5 w-full "></div></footer>
+                
             </div>
     )
 }
