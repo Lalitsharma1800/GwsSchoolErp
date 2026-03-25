@@ -1,3 +1,3 @@
-export async function admin_action(params) {
+export async function admin_action() {
     
 }

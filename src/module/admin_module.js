@@ -4,5 +4,5 @@ import { admin_action as action } from "@/action/admin_action";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 
-export default Component;
-export {action, loader,ErrorBoundary};
+
+export {Component,action, loader,ErrorBoundary};
