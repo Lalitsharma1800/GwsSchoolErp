@@ -2,8 +2,7 @@ import { useForm } from "react-hook-form";
 import { login} from "../../../supabase/index";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setSession, setRole } from "../../../store/authSlice";
+
 
 
 

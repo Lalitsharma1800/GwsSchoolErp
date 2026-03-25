@@ -26,7 +26,7 @@ export function TableBody({
                     return <tr>
                         {
                             row.map((field) => {
-                                return <td>field.</td>
+                                return <td>field</td>
                             })
                         }
                     </tr>

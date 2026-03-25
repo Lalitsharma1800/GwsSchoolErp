@@ -1,5 +1,7 @@
-import { examIcon,  feeIcon, stafficon, noticeicon, salleryicon, recordIcon,
-         resulticon, teachericon,  studenticon, calendarIcon,    } from "../../../assets/index";
+import { 
+            examIcon,  feeIcon, stafficon, noticeicon, salleryicon, recordIcon,
+            resulticon, teachericon,  studenticon, calendarIcon,    
+        } from "../../../assets/index";
 import Card from "../Card/Card";
 import { logout } from "../../../supabase";
 import { useNavigate } from "react-router-dom";
