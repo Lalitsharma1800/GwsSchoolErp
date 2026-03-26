@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+adminLoader_redundante.js
+studentLoader_redundante.js
+TeacherLoader_redundante.js
+redundant
