@@ -7,8 +7,9 @@ import Header from "./Header/Header"; // it is used in teacher  pages
 import TeacherDashboard from "./Teacher/TeacherDashboard/TeacherDashboard";
 import StudentDashboard from "./Student/StudentDashboard/StudentDashboard"
 import TeacherManagement from "./Admin/TeacherManagement/TeacherManagement";
+import FallBack from "./FallBackElement";
 
-export {LoginHeader, LoginForm, LoginFooter, AdminHeader, AdminDashboard,Header,StudentDashboard,
+export {FallBack ,LoginHeader, LoginForm, LoginFooter, AdminHeader, AdminDashboard,Header,StudentDashboard,
     TeacherDashboard,TeacherManagement
 
 

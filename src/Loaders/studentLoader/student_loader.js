@@ -10,7 +10,7 @@ export default async function student_loader(){
         const role =  await authentication.getRole(user.id);
 
          if (role !== "student") throw error; 
-        return redirect("/student");
+        return null;
         }
         catch(error){
             throw redirect("/login");

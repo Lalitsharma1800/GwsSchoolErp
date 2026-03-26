@@ -2,7 +2,7 @@ import {profileicon, navbarIcon} from "../../../assets/index"
 
 export default function AdminHeader({name}){
    
-
+    
     return(
             <header className="sticky top-0 border-b z-50 w-full h-14 xl:h-20 2xl:h-30 bg-neutral-200 flex justify-between  items-center">
                         

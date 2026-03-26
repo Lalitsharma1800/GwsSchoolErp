@@ -7,12 +7,13 @@ export default async function admin_loader(){
         
         const user = await authentication.getUser();
         
-        await authentication.getRole(user.id);
+        const role = await authentication.getRole(user.id);
 
          if (role !== "admin") throw error; 
-        return redirect("/ad,in");
+        return null;
         }
         catch(error){
             throw redirect("/login");
         }
+        return null;
 }

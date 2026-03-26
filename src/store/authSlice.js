@@ -4,10 +4,10 @@ const initialState = {
     status : false,
     session: null,
     userData: {
-        name: null,
-        id: null,
-        role: null,
-        gmail: null,
+        name: "name",
+        id: "id",
+        role: "role",
+        gmail: "e-mail",
     },
     
 }

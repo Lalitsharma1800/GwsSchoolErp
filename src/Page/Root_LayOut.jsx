@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import { Spinner } from "@/components/ui/spinner";
 import React from "react";
+import { FallBack } from "@/components";
 
 export default function Root_LayOut(){
     
@@ -8,8 +8,8 @@ export default function Root_LayOut(){
     const isbusy = navigation.state === "submitting" || navigation.state === "loading"
     return(
       <>
-      {isbusy && <Spinner className="size-80"/>}
-      <Outlet/>
+      {isbusy && <FallBack/>}
+      {!isbusy && <Outlet/>}
       </>
     )
 }
