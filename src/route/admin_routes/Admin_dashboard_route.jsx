@@ -1,9 +1,11 @@
 import  AdminDashboard  from "@/components/Admin/AdminDashboard/AdminDashboard";
 
-export const admin_dashboard_route = {
+export const Admin_dashboard_route = {
     path: "/admin",
     lazy: async () => {
-        const module = await import("./../../module/admin_module");
+        
+        const module = await import("../../module/admin_module");
+        
         return {
             Component: module.default,
             loader: module.loader,
@@ -12,6 +14,7 @@ export const admin_dashboard_route = {
     },
     children: 
                 [
+                    
                     {
                                     path: "",
                                     Component: AdminDashboard,

@@ -5,7 +5,7 @@ import { Suspense, lazy } from "react"
 import Loading from "./components/Loading/Loading"
 import { TeacherManagement, AdminDashboard } from "./components"
 import FeesDashboard from "./components/Admin/Fees/FeesDashboard/FeesDashboard"
-import router from "./route/route_index"
+import Router from "./route/route_index"
 import Root_LayOut from "./Page/Root_LayOut"
 import { Spinner } from "./components/ui/spinner"
 
@@ -69,7 +69,7 @@ export default function App(){
 
     return(
        <RouterProvider 
-       router={router}
+       router={Router}
        />
     )
 }
