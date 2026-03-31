@@ -144,7 +144,7 @@ export const Navbar = React.forwardRef((
             </Popover>
           )}
           {/* Main nav */}
-          <div className="flex items-center gap-28">
+          <div className="flex items-center gap-20">
             
               <div className="text-2xl cursor-pointer">{logo}</div>
             {/* Navigation menu */}
