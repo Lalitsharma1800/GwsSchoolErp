@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Spinner } from "@/components/ui/spinner";
 
 import {
      teacher_data, 
@@ -21,6 +22,7 @@ export default function TeacherManagement(){
     const [teachersList, setTeacherList] = useState(null)
     const [hasSearched, setHasSearched] = useState(false)
 
+    const[countLoading, setCountLoading] = useState(false);
     
     const [isListLoading, setIsListLoading] = useState(false)
     const [isDetailsLoading, setIsDetailsLoading] = useState(false)
@@ -33,8 +35,10 @@ export default function TeacherManagement(){
 useEffect(() => {
     const fetchCount = async () => {
         try{
+            setCountLoading(true);
             const count = await teacherCount();
             setTotalCount(count)
+            setCountLoading(false);
         }
         catch(error){
             console.error("Failed to fetch teacher count", error);
@@ -50,7 +54,7 @@ useEffect(() => {
   -----------------------------------*/
 
 
-const handleSearch = useCallback(async () => {
+const handleSearch = async () => {
     try{
         setIsListLoading(true)
         const teacher_List = await teacher_data();
@@ -63,12 +67,12 @@ const handleSearch = useCallback(async () => {
         setIsListLoading(false)
         setHasSearched(true)
     }
-},[]);
+};
   
   /* ----------------------------------
      Fetch teacher details
   -----------------------------------*/
-const handleViewDetails = useCallback(async (id,index) => {
+const handleViewDetails = async (id,index) => {
     
         try{
             setShowDetails(false)
@@ -97,7 +101,7 @@ const handleViewDetails = useCallback(async (id,index) => {
         setIsDetailsLoading(false)
         setShowDetails(true)
         }
-},[dispatch, teachersList]);
+};
 
 return(     
     <div className="bg-neutral-200 min-h-screen pb-3 border-b-2">
@@ -110,10 +114,10 @@ return(
             </div> 
             {/* Stats */}
             <div className="m-3   flex  sm:flex-row justify-center items-center flex-wrap gap-x-3.5 gap-y-2">
-                                <FacultyCard content={"Total Faculty"}  count={totalCount} />
-                                <FacultyCard content={"Today's Attendance"}  count={totalCount} />
-                                <FacultyCard content={"On Leave"}  count={0} />
-                                <FacultyCard content={"Pending Actions"}  count={0} />                  
+                                <FacultyCard content={"Total Faculty"}  count={totalCount} countLoading={countLoading} />
+                                <FacultyCard content={"Today's Attendance"}  count={totalCount} countLoading={countLoading}/>
+                                <FacultyCard content={"On Leave"}  count={0} countLoading={countLoading}/>
+                                <FacultyCard content={"Pending Actions"}  count={0} countLoading={countLoading}/>                  
             </div>
 
             <div className=" bg-white  m-3 sm:mx-12 rounded flex flex-col justify-center items-center">
@@ -170,7 +174,7 @@ return(
                                             </td>
                                             
                                             <td className="text-center whitespace-nowrap border border-black px-2">
-                                                <button onClick={async () =>{await handleViewDetails(column.teachers.id,index)}} 
+                                                <button onClick={ () =>{ handleViewDetails(column.teachers.id,index)}} 
                                                     className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer">
                                                         View
                                                 </button>
