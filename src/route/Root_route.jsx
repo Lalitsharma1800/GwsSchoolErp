@@ -6,8 +6,8 @@ import {
             Login_route, 
             Login_route_2_path_login, 
             Student_dashboard_route, 
-            Teacher_dashboard_route, 
         } from "./route_index";
+import { Admin_teacherManagement_route } from "./admin_routes/Admin_teacherManagement_route";
 
 
 import Root_LayOut from "@/Page/Root_LayOut";
@@ -31,6 +31,7 @@ export const Router = createBrowserRouter([
             Login_route_2_path_login,
             Admin_parent_route,
             Student_dashboard_route,
+            Admin_teacherManagement_route,
             
             
             

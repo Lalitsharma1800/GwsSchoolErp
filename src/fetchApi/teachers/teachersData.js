@@ -3,6 +3,8 @@ import store from "../../store/store";
 import { setTeacherInfo } from "../../store/teacherInfoSlice";
 
 export async function teacher_data(){
+
+ 
 const { data, error } = await supabase
   .from('class_teacher')
   .select(`
@@ -29,7 +31,6 @@ export async function  teacherCount() {
                             .select("*", { count: "exact", head: true });
     
     if (error) throw error;
-
     return count;
     
 };
@@ -44,7 +45,6 @@ let { data, error } = await supabase
      `)
      .eq('id', id)
   if(error){
-    console.log(error)
     throw error;
   }
   store.dispatch(setTeacherInfo({

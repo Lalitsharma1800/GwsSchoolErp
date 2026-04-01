@@ -49,9 +49,7 @@ export class Authentication{
         }
     }
     async  getUser() {
-        try{
             const {data:{user},error} = await supabase.auth.getUser();
-        
 
             if(!user){
                 throw new Error("User Not Found");
@@ -64,10 +62,6 @@ export class Authentication{
                 store.dispatch(setEmail(user.email))
                 return user;
             }
-        }
-        catch(error){
-            throw error;
-        }
     }
     async getRole(id) {
         try{

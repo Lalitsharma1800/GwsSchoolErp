@@ -18,6 +18,9 @@ export default function TeacherManagement(){
 
     const dispatch = useDispatch();
 
+    const[isError, setIsError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
+
     const [totalCount, setTotalCount] = useState("")
     const [teachersList, setTeacherList] = useState(null)
     const [hasSearched, setHasSearched] = useState(false)
@@ -41,7 +44,8 @@ useEffect(() => {
             setCountLoading(false);
         }
         catch(error){
-            console.error("Failed to fetch teacher count", error);
+            setErrorMessage(error.message);
+            setIsError(true);
         }
     };
 
@@ -61,7 +65,8 @@ const handleSearch = async () => {
         setTeacherList(teacher_List)
     }
     catch(error){
-        throw error;
+            setErrorMessage(error.message);
+            setIsError(true);
     } 
     finally{
         setIsListLoading(false)
@@ -95,7 +100,8 @@ const handleViewDetails = async (id,index) => {
                 
         }
         catch(error){
-        throw error;
+            setErrorMessage(error.message);
+            setIsError(true);
         }
         finally{
         setIsDetailsLoading(false)
@@ -112,6 +118,10 @@ return(
                     Teacher Management
                 </h2>
             </div> 
+            {/* Error */}
+            {isError && <p className="font-Inter text-red-500 flex justify-center w-full ">{errorMessage}, please try again later.</p>}
+
+
             {/* Stats */}
             <div className="m-3   flex  sm:flex-row justify-center items-center flex-wrap gap-x-3.5 gap-y-2">
                                 <FacultyCard content={"Total Faculty"}  count={totalCount} countLoading={countLoading} />

@@ -19,8 +19,18 @@ async function admin_dashboard_lazy() {
         }
 }
 
+async function admin_teacherManagement_lazy() {
+   
+        const module = await import("../../module/admin/admin_teachermanagement_module");
+        return {
+            Component: module.default,
+            ErrorBoundary: module.ErrorBoundary,
+        }
+}
+
 
 export  const  admin_lazy = {
     parent: admin_parent,
-    dashboard: admin_dashboard_lazy
+    dashboard: admin_dashboard_lazy,
+    teacherManagement: admin_teacherManagement_lazy
 }
