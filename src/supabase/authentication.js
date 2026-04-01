@@ -84,6 +84,7 @@ export class Authentication{
                 throw error("user data not found");
             }
             else{
+                console.log(data.name)
                 store.dispatch(setName(data.name))
                 store.dispatch(setRole(data.role))
                 return data.role;
@@ -146,6 +147,8 @@ export class Authentication{
         }
     }
 }
+
+
 const authentication = new Authentication();
 export default authentication;
 

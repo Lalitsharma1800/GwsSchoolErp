@@ -1,13 +1,22 @@
-import { AdminHeader as Header, AdminDashboard } from "../../components";
-import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import Navbar2 from "@/components/NavBar/Navbar";
 
 export default function AdminDashboardPage(){
-    const name = useSelector(state => state.auth.userData.name)
+        
+    
+    
+    const menuList = [
+            { href: "/admin", label: "Dashboard"},
+            { href: "/admin/Faculty", label: "Faculty"},
+            { href: "/admin/HR", label: "HR" },
+            { href: "/admin/Student", label: "Student" },
+            { href: "/admin/Faculty", label: "Finance" },
+            
+    ]
     
 return(
         <>
-        <Header name={name}/>
+        <Navbar2 menuList={menuList}/>
         <Outlet/>
         </>
     )

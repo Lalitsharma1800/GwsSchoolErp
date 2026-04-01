@@ -12,6 +12,10 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
+import ProfileBar from "../profileBar/profileBar";
+import { useSelector } from "react-redux";
+
+
 
 
 // Hamburger icon component
@@ -59,12 +63,13 @@ export const Navbar = React.forwardRef((
     logo = <Logo />,
     logoHref = "#",
     navigationLinks = defaultNavigationLinks,
-    user_name = "User Name",
     ...props
   },
   ref,
 ) => {
 
+  const user_name = useSelector(state => state.auth.userData.name)
+    
   const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef(null)
 
@@ -115,7 +120,7 @@ export const Navbar = React.forwardRef((
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  className="group h-9 w-9 hover:bg-accent hover:text-blue-600"
+                  className="group h-9 w-9 hover:bg-accent hover:text-blue-300"
                   size="icon"
                   variant="ghost">
                   <HamburgerIcon />
@@ -144,7 +149,7 @@ export const Navbar = React.forwardRef((
             </Popover>
           )}
           {/* Main nav */}
-          <div className="flex items-center gap-20">
+          <div className="flex items-center gap-20 lg:gap-24">
             
               <div className="text-2xl cursor-pointer">{logo}</div>
             {/* Navigation menu */}
@@ -156,7 +161,7 @@ export const Navbar = React.forwardRef((
                       <NavLink
                         to={link.href}
                         className={ ({isActive}) => cn(
-                                "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-orange-600   disabled:pointer-events-none cursor-pointer no-underline",
+                                "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-orange-400   disabled:pointer-events-none cursor-pointer no-underline",
                                 isActive ? "text-orange-600" : "text-black"
                               )
                         }
@@ -173,17 +178,13 @@ export const Navbar = React.forwardRef((
           </div>
         </div>
         {/* Right side */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center text-center text-sm  gap-1">
           
-          <button className="text-sm font-medium hover:bg-neutral-300 rounded-full p-1 hover:text-accent-foreground cursor-pointer active:bg-neutral-200 ">
-            <Avatar >
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>UN</AvatarFallback>
-            </Avatar>
-          </button>
 
-          {!isMobile && <h1 className="font-bold">{user_name}</h1>}
+            <ProfileBar/>
+          {!isMobile && <h1  className="font-bold">{user_name}</h1>}
         </div>
+       
       </div>
     </header>
   );

@@ -39,7 +39,8 @@ export const Router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <FallBack/>
+                        element: <FallBack/>,
+                        
                     }
                 ]
             }
@@ -47,7 +48,8 @@ export const Router = createBrowserRouter([
     },
     {
             path: "/*",
-            Component: Navbar2
+            Component: Navbar2,
+            hydrateFallbackElement:<FallBack/>,
             // element: <div className="w-full h-screen fixed text-2xl text-black grid place-content-center">Error 404, Page Not Found</div>
     }
 
