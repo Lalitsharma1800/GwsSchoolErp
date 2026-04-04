@@ -1,12 +1,7 @@
 import { useForm } from "react-hook-form";
-import { login} from "../../../supabase/index";
+import {authentication} from "../../../supabase/index";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-
-
-
-
 
 export default function LoginForm(){
 
@@ -22,7 +17,7 @@ export default function LoginForm(){
         setErr(null);
         
         try {
-          const role = await login(data.email, data.Password)
+          const role = await authentication.login(data.email, data.Password)
           navigate(`/${role}`)
         } 
         catch (error) {

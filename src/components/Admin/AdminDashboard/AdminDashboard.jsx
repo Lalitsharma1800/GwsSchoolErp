@@ -3,11 +3,8 @@ import {
             resulticon, teachericon,  studenticon, calendarIcon,    
         } from "../../../assets/index";
 import Card from "../Card/Card";
-import { logout } from "../../../supabase";
+import authentication from "../../../supabase/authentication";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button"
-import { Spinner } from "@/components/ui/spinner";
-
 
 
 
@@ -17,7 +14,7 @@ export default function AdminDashboard(){
 
     const  handleLogOut = async () => {
         console.log("clicked")
-        await logout()
+        await authentication.logout();
         navigate("/")
     }
     return(

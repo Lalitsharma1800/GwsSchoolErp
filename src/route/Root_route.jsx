@@ -12,9 +12,7 @@ import { Admin_teacherManagement_route } from "./admin_routes/Admin_teacherManag
 
 import Root_LayOut from "@/Page/Root_LayOut";
 
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+
 
 export const Router = createBrowserRouter([
     {

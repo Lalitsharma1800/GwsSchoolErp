@@ -14,7 +14,10 @@ export default function TeacherDetails({setTeacherList}){
     const teacher = useSelector((state) => state.teacherInfo.teacherInfo);
     
     const [edit, setEdit] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    
+    const[isError, setIsError] = useState(false);
+    const[errorMessage, setErrorMessage] = useState(null);
 
     
     const handleSave = async () => {
@@ -36,11 +39,13 @@ export default function TeacherDetails({setTeacherList}){
                             },
                             }
                         : row
-                )
+                        )
             );
+            setIsError(false);
         }
         catch(error){
-            console.error(error)
+            setIsError(true);
+            setErrorMessage(error.message);
         }
         finally{
             setEdit(false)
@@ -157,6 +162,8 @@ export default function TeacherDetails({setTeacherList}){
                     </div>
                 }
             </div>
+            {/* Error */}
+            {isError && <p className="font-Inter text-red-500 flex justify-center w-full ">{errorMessage}</p>}
         </div>
     )
 }
