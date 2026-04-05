@@ -24,23 +24,24 @@ export async function  teacherCount() {
 export async function teacher_data(){
 
             const { data, error } = await supabase
-              .from('class_teacher')
-              .select(`
-                classes(
-                class_number,
-                section
-                ),
-                teachers(
-                id,
-                name,
-                phone
-                )
-                `)
+                                            .from('class_teacher')
+                                            .select(`
+                                                    classes(
+                                                      class_number,
+                                                      section
+                                                    ),
+                                                    teachers(
+                                                      id,
+                                                      name,
+                                                      phone
+                                                    )
+                                              `)
 
                 if(error || !data){
                       if(error.code === ""){
                           throw new Error("No Internet Connection, Please Connect to internet")
                       }
+
                 }
               if(error){
                 throw error;
@@ -67,11 +68,11 @@ export async function teacher_details(id){
           if(error.code === ""){
               throw new Error("No Internet Connection, Please Connect to internet")
           }
+          if(!data){
+            throw new Error("No data found");
+          }
+          throw new Error("There is an issue in fetching teacher details");
       }
-      
-      if(error){
-        throw new Error("There is an issue in fetching teacher details");
-      };
 
 
       let aadhaar;
