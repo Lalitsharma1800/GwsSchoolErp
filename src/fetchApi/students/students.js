@@ -1,7 +1,7 @@
 import { supabase } from "../../supabase";
 import store from "../../store/store";
 
-
+// student data with class filter
 export async function searchWithClass(classNumber) {
 const { data, error } = await supabase
                                   .from('students_basic')
@@ -24,10 +24,20 @@ const { data, error } = await supabase
                                     'classes.class_number',
                                     classNumber,
                                   )
+         if(error || !data){
+            if(error.code === ""){
+              throw new Error("No Internet..");
+            }
+            if(!data){
+              throw new Error("No data found");
+            }
+            throw new Error("There is an issue, please try again later");
+         }   
+         return data;
 }
 
+// fees details of an student
 export async function  fees_details() {
-  console.log("clas")
       const { data, error } = await supabase
                               .from('students_basic')
                               .select(`
