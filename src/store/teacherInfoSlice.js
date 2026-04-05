@@ -12,7 +12,7 @@ const initialState = {
         subjects: "",
         qualification: "",
         experience: "",
-        aadhar: "Not Available",
+        aadhaar: "Not Available",
         joined: "Not Available",
     },
     

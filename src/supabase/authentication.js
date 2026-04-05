@@ -1,6 +1,8 @@
 import { supabase } from "./supabase";
 import store from "./../store/store"
 import {loggedout, setSession, setRole, setEmail, setUserId, setName } from "./../store/authSlice";
+import validation from "@/inputValidation/inputValidation";
+
 
 export class Authentication{
     async  authState() {
@@ -89,6 +91,10 @@ export class Authentication{
     }
     // login returns user object which contains data such as role and etc
     async login(gmail, password){
+
+
+            //  validate gmail
+            validation.gmailValidation(gmail);
         
             const {data, error} = await supabase.auth.signInWithPassword({email:gmail, password: password})
 
@@ -97,17 +103,17 @@ export class Authentication{
                 throw new Error("Invalid Credentials 1");
             }
             
-                const session = await authentication.getSession();
+                const session = await this.getSession();
 
                 if(!session){
                     throw new Error("Invalid Credential and session not found")
                 }
 
-                    const user = await authentication.getUser();
+                    const user = await this.getUser();
                     if(!user) throw new Error("Invalid Credentials, user not found")
 
                     else{
-                        const role = await authentication.getRole(user.id)
+                        const role = await this.getRole(user.id)
                         return role;
                     }
         }
@@ -118,7 +124,6 @@ export class Authentication{
             if(error){
                 throw new Error("logout failed try again")
             }
-            console.log("loggedOut Successfully")
             store.dispatch(loggedout());
     }
 }

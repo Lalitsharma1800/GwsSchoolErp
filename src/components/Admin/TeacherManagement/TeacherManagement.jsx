@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Spinner } from "@/components/ui/spinner";
-
 import {
      teacher_data, 
      teacherCount, 
@@ -62,7 +60,8 @@ const handleSearch = async () => {
     try{
         setIsListLoading(true)
         const teacher_List = await teacher_data();
-        setTeacherList(teacher_List)
+        setTeacherList(teacher_List);
+        setIsError(false);
     }
     catch(error){
             setErrorMessage(error.message);
@@ -80,8 +79,8 @@ const handleSearch = async () => {
 const handleViewDetails = async (id,index) => {
     
         try{
-            setShowDetails(false)
-            setIsDetailsLoading(true)
+            setShowDetails(false);
+            setIsDetailsLoading(true);
 
             
             await teacher_details(id) 
@@ -89,14 +88,17 @@ const handleViewDetails = async (id,index) => {
             const row = teachersList[index];
             if (!row) return;
 
+            const _class = `${row.classes?.class_number}'${row.classes?.section}'`  ;
+
                 dispatch(
                     setTeacherInfo({
                         id: row.teachers?.id,
                         name: row.teachers?.name,
-                        classname: row.classes?.class_name,
+                        classname: _class,
                         phone: row.teachers?.phone,
                     })
                 )
+                setIsError(false);
                 
         }
         catch(error){
@@ -172,7 +174,7 @@ return(
                                             </td>
                                             
                                             <td  className="text-center whitespace-nowrap border border-black px-2">
-                                                {column.classes?.class_name}
+                                                {column.classes?.class_number} {column.classes?.section}
                                             </td>
                                             
                                             <td  className="text-center whitespace-nowrap border border-black px-2">

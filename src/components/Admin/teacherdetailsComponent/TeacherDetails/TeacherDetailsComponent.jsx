@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { editTeacherData } from "../../../../updateApi"
 import { setTeacherInfo } from "../../../../store/teacherInfoSlice"
-import TeacherDetailsLine from "../TeacherDetailsLine.jsx/TeacherDetailsLine"
+import TeacherDetailsLine from "../TeacherDetailsLine.jsx/TeacherDetailsLine";
+import { delay } from "@/supabase";
+import validation from "@/inputValidation/inputValidation";
 
 
 
@@ -25,6 +27,8 @@ export default function TeacherDetails({setTeacherList}){
         try{
             setLoading(true)
 
+            
+
             await editTeacherData(teacher);
             
             setTeacherList((prev) =>
@@ -44,6 +48,8 @@ export default function TeacherDetails({setTeacherList}){
             setIsError(false);
         }
         catch(error){
+            setIsError(false);
+            await delay(50);
             setIsError(true);
             setErrorMessage(error.message);
         }
@@ -74,7 +80,8 @@ export default function TeacherDetails({setTeacherList}){
 
                 <TeacherDetailsLine 
                     detailsName={"Class"} 
-                    detailsValue={teacher.classname} 
+                    detailsValue={teacher.classname}
+                    
                 />
 
                 <TeacherDetailsLine 
@@ -99,8 +106,10 @@ export default function TeacherDetails({setTeacherList}){
                 />
 
                 <TeacherDetailsLine 
-                    detailsName={"Aadhar No"} 
-                    detailsValue={teacher.aadhar??"N/A"}
+                    detailsName={"Aadhaar No"} 
+                    detailsValue={teacher.aadhaar??"N/A"}
+                    disabled={!edit} 
+                    onChangeHandler={updateField("aadhaar")}
                 />
 
                 <TeacherDetailsLine 
