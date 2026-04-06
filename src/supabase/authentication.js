@@ -2,6 +2,7 @@ import { supabase } from "./supabase";
 import store from "./../store/store"
 import {loggedout, setSession, setRole, setEmail, setUserId, setName } from "./../store/authSlice";
 import validation from "@/inputValidation/inputValidation";
+import { redirect } from "react-router-dom";
 
 
 export class Authentication{
@@ -79,7 +80,6 @@ export class Authentication{
                 throw error("user data not found");
             }
             else{
-                console.log(data.name)
                 store.dispatch(setName(data.name))
                 store.dispatch(setRole(data.role))
                 return data.role;
@@ -125,6 +125,8 @@ export class Authentication{
                 throw new Error("logout failed try again")
             }
             store.dispatch(loggedout());
+            // throw redirect("/login");
+            
     }
 }
 
