@@ -10,20 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard(){
 
-    const navigate = useNavigate()
 
-    const  handleLogOut = async () => {
-        console.log("clicked")
-        await authentication.logout();
-        navigate("/")
-    }
     return(
        
             <div className=" w-full  pb-10">
                 
                 <div className="w-auto flex justify-center items-center  ">
                     <div className="font-Roboto w-auto  text-2xl lg:text-3xl 2xl:text-5xl  py-4 px-12 text-center my-4 text-white bg-[#05424D] border border-black mx-1 md:mx-4 rounded-2xl">Admin Dashboard</div>
-                    <button onClick={(e) => handleLogOut()}>logout</button>
                 </div> 
 
                 <div className="w-auto  flex justify-center items-center">
