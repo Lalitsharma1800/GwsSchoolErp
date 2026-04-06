@@ -8,9 +8,24 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { authentication } from "@/supabase"
-
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 export default function ProfileBar(){
 
+
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+  const hanleLogout = async() => {
+      try{
+          setError(null);
+          await authentication.logout();
+          navigate("/login");
+      }
+      catch(error){
+        setError(error.message);
+      }
+  }
  
 
   return (
@@ -32,8 +47,10 @@ export default function ProfileBar(){
         <DropdownMenuItem className=" cursor-pointer">Change Password</DropdownMenuItem>
 
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-600  cursor-pointer">Logout</DropdownMenuItem>
+        <DropdownMenuItem className="text-red-600  cursor-pointer"
+          onClick = {() => hanleLogout()}>Logout</DropdownMenuItem>
       </DropdownMenuContent>
+      {error && alert("LogOut failed, Please try again")}
     </DropdownMenu>
   )
 }
