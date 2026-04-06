@@ -10,6 +10,7 @@ import { setTeacherInfo } from "../../../store/teacherInfoSlice";
 
 import FacultyCard from "./../../FacultyCard/FacultyCard"
 import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
+import getStudentData from "@/fetchApi/students/students";
 
 
 export default function TeacherManagement(){
@@ -66,6 +67,7 @@ const handleSearch = async () => {
     catch(error){
             setErrorMessage(error.message);
             setIsError(true);
+            setHasSearched(false);
     } 
     finally{
         setIsListLoading(false)
@@ -79,6 +81,9 @@ const handleSearch = async () => {
 const handleViewDetails = async (id,index) => {
     
         try{
+            
+            await getStudentData.ForAll();
+            await getStudentData.getbyClass();
             setShowDetails(false);
             setIsDetailsLoading(true);
 

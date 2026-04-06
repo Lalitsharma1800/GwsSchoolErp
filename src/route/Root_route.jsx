@@ -9,7 +9,7 @@ import {
         } from "./route_index";
 import { Admin_teacherManagement_route } from "./admin_routes/Admin_teacherManagement_route";
 
-
+import NewDashboard from "@/components/Admin/newDashboard/NewDashboard";
 import Root_LayOut from "@/Page/Root_LayOut";
 
 
@@ -47,7 +47,7 @@ export const Router = createBrowserRouter([
     },
     {
             path: "/*",
-            Component: Navbar2,
+            Component: NewDashboard,
             hydrateFallbackElement:<FallBack/>,
             // element: <div className="w-full h-screen fixed text-2xl text-black grid place-content-center">Error 404, Page Not Found</div>
     }

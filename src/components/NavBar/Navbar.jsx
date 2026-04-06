@@ -1,5 +1,3 @@
-import { Avatar } from "../ui/avatar";
-import Logo from "../logo";
 import { Navbar } from "../ui/navbar";
 
 
