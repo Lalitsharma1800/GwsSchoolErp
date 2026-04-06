@@ -6,24 +6,21 @@ import validation from "@/inputValidation/inputValidation";
 // count
 export async function  teacherCount() {
 
-    const { count, error } = await supabase
+    const obj = await supabase
                             .from("teachers")
                             .select("*", { count: "exact", head: true });
-
-    if(error || !count){
-                if(error.code === ""){
+    if(obj.error || !obj.count){
+                if(obj.error.code === ""){
                     throw new Error("No Internet Connection, Please Connect to internet");
                 }
     }
-    if (error) throw error;
-    return count;
+    return obj.count;
 };
 
 
 // basic teacher detail
 export async function teacher_data(){
-
-            const { data, error } = await supabase
+            const {data, error} = await supabase
                                             .from('class_teacher')
                                             .select(`
                                                     classes(
@@ -36,16 +33,15 @@ export async function teacher_data(){
                                                       phone
                                                     )
                                               `)
-
                 if(error || !data){
                       if(error.code === ""){
                           throw new Error("No Internet Connection, Please Connect to internet")
                       }
-
+                      if(error){
+                        throw new Error("There is an issue, please try again later");
+                      }
+                        throw new Error("No data found");
                 }
-              if(error){
-                throw error;
-              }
               return data;
 };
 
@@ -54,7 +50,7 @@ export async function teacher_data(){
 // specific teacher detail
 export async function teacher_details(id){
 
-    const { data, error } = await supabase
+    const {data, error} = await supabase
                                     .from('teachers')
                                     .select(`
                                       qualification, subjects,age,gender,joined,experience,aadhaar
@@ -63,15 +59,14 @@ export async function teacher_details(id){
 
       
       
-      
       if(error || !data){
           if(error.code === ""){
               throw new Error("No Internet Connection, Please Connect to internet")
           }
-          if(!data){
-            throw new Error("No data found");
-          }
-          throw new Error("There is an issue in fetching teacher details");
+          if(error){
+              throw new Error("There is an issue, please try again later");
+            }
+              throw new Error("No data found");
       }
 
 
