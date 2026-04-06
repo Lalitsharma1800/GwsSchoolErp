@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import Logo from "../logo";
@@ -194,11 +193,3 @@ Navbar.displayName = "Navbar"
 
 export {  HamburgerIcon }
 
-// Demo
-export function Demo() {
-  return (
-    <div className="fixed inset-0">
-      <Navbar />
-    </div>
-  );
-}
