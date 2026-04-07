@@ -1,6 +1,6 @@
 export default function HeroSection(){
     return(
-<section className="relative w-full min-h-[70vh] flex items-center bg-gray-50  overflow-hidden">
+<section className="relative w-full min-h-[70vh] flex items-center bg-gray-50  overflow-hidden ">
       
       {/* RIGHT IMAGE */}
       <div className="absolute inset-0">
@@ -33,6 +33,7 @@ export default function HeroSection(){
         <p className="ml-12">Where learning meets nature.</p>
         </div>
       </div>
+      
 
 </section>
     )
