@@ -11,6 +11,7 @@ import { setTeacherInfo } from "../../../store/teacherInfoSlice";
 import FacultyCard from "./../../FacultyCard/FacultyCard"
 import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
 import getStudentData from "@/fetchApi/students/students";
+import Pagedescriptor from "@/components/pagedescriptor/Pagedescriptor";
 
 
 export default function TeacherManagement(){
@@ -50,6 +51,14 @@ useEffect(() => {
 
     fetchCount();
 },[]);
+
+
+const stats = [
+    {content:"Total Faculty", count:totalCount, countLoading:countLoading},
+    {content:"Today's Attendance", count:totalCount, countLoading:countLoading},
+    {content:"On Leave", count:totalCount, countLoading:countLoading},
+    {content:"Pending", count:totalCount, countLoading:countLoading}
+]
 
 
  /* ----------------------------------
@@ -116,25 +125,25 @@ const handleViewDetails = async (id,index) => {
         }
 };
 
-return(     
-    <div className="bg-neutral-200 min-h-screen pb-3 border-b-2">
+return(    
+    <>    
+    <div>
+            <div className="bg-linear-to-r from-white via-white/90 to-white/0">
+                <Pagedescriptor text="Faculty Management" />
+            </div>
         
-            {/* Header */}
-            <div className="w-auto   flex justify-center items-center  ">
-                <h2 className="font-Roboto w-auto  sm:text-2xl lg:text-3xl 2xl:text-5xl py-1 px-2 sm:py-4 sm:px-12 text-center my-4 text-white bg-[#05424D] border border-black mx-1 md:mx-4 rounded-2xl">
-                    Teacher Management
-                </h2>
-            </div> 
+           
             {/* Error */}
             {isError && <p className="font-Inter text-red-500 flex justify-center w-full ">{errorMessage}, please try again later.</p>}
 
 
             {/* Stats */}
             <div className="m-3   flex  sm:flex-row justify-center items-center flex-wrap gap-x-3.5 gap-y-2">
-                                <FacultyCard content={"Total Faculty"}  count={totalCount} countLoading={countLoading} />
-                                <FacultyCard content={"Today's Attendance"}  count={totalCount} countLoading={countLoading}/>
-                                <FacultyCard content={"On Leave"}  count={0} countLoading={countLoading}/>
-                                <FacultyCard content={"Pending Actions"}  count={0} countLoading={countLoading}/>                  
+                                {
+                                    stats.map((stat) => (
+                                        <FacultyCard content={stat.content} count={stat.count} countLoading={stat.countLoading} />
+                                    ))
+                                }
             </div>
 
             <div className=" bg-white  m-3 sm:mx-12 rounded flex flex-col justify-center items-center">
@@ -238,4 +247,6 @@ return(
                             </div>
             }
     </div>
+    </>
+
 )}

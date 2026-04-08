@@ -15,5 +15,4 @@ export default async function admin_loader(){
         catch(error){
             throw redirect("/login");
         }
-        return null;
 }

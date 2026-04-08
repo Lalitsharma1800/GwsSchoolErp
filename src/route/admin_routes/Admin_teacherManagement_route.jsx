@@ -4,7 +4,7 @@ import { FallBack } from "@/components"
 
 export const Admin_teacherManagement_route = {
     
-    path: "/teacher",
+    path: "facultyManagement",
     hydrateFallbackElement:<FallBack/>,
     lazy: admin_lazy.teacherManagement,
     

@@ -1,15 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import { FallBack } from "@/components";
-import { Admin_parent_route } from "./admin_routes/Admin_dashboard_parent_route";
-import Navbar2 from "@/components/NavBar/Navbar";
+import { Admin_parent_route } from "./admin_routes/admin_parent_route";
 import { 
             Login_route, 
-            Login_route_2_path_login, 
+            Login_route_2_path_login, // for /login
             Student_dashboard_route, 
         } from "./route_index";
 import { Admin_teacherManagement_route } from "./admin_routes/Admin_teacherManagement_route";
 
-import NewDashboard from "@/components/Admin/newDashboard/NewDashboard";
+import Dashboard from "@/components/Admin/Dashboard/Dashboard";
 import Root_LayOut from "@/Page/Root_LayOut";
 
 
@@ -25,14 +24,11 @@ export const Router = createBrowserRouter([
         hydrateFallbackElement:<FallBack/>,
         
         children: [
-            Login_route,
-            Login_route_2_path_login,
-            Admin_parent_route,
+            Login_route,  // for "/"
+            Login_route_2_path_login,  // for "/login"
+            Admin_parent_route,      // for "/admin"
             Student_dashboard_route,
             Admin_teacherManagement_route,
-            
-            
-            
             {
                 path: "/hello",
                 children: [
@@ -47,7 +43,7 @@ export const Router = createBrowserRouter([
     },
     {
             path: "/*",
-            Component: NewDashboard,
+            Component: Dashboard,
             hydrateFallbackElement:<FallBack/>,
             // element: <div className="w-full h-screen fixed text-2xl text-black grid place-content-center">Error 404, Page Not Found</div>
     }
