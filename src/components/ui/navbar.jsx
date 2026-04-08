@@ -119,10 +119,10 @@ export const Navbar = React.forwardRef((
             <Popover>
               <PopoverTrigger asChild>
                 <Button
-                  className="group h-9 w-9 hover:bg-accent hover:text-blue-300"
+                  className="group h-9 w-9 hover:bg-accent hover:text-blue-600"
                   size="icon"
                   variant="ghost">
-                  <HamburgerIcon />
+                  <HamburgerIcon  />
                 </Button>
               </PopoverTrigger>
               <PopoverContent align="start" className="w-48 p-2">
@@ -162,7 +162,7 @@ export const Navbar = React.forwardRef((
                         className={ ({isActive}) => cn(
                                 "group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-orange-400   disabled:pointer-events-none cursor-pointer no-underline",
                                 isActive ? "text-orange-600" : "text-black"
-                              )
+                            )
                         }
                       >
                       
