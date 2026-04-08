@@ -1,11 +1,16 @@
-export const Teacher_dashboard_route = {
+import lazy_teacher_parent from "@/Lazy/teacher/lazy_teacher";
+import { FallBack } from "@/components";
+import { TeacherDashboard } from "@/components";
+
+export const Teacher_dashoard_route = {
     path: "/teacher",
-    lazy: async () => {
-        const module = await import("../../module/teacher_module");
-        return {
-            Component: module.default,
-            loader: module.loader,
-            ErrorBoundary: module.ErrorBoundary,
-        };
-    }
+    lazy: lazy_teacher_parent,
+    hydrateFallbackElement: <FallBack/>,
+    children: [
+            {
+            path:"",
+            Component: TeacherDashboard
+            }
+
+    ]
 }

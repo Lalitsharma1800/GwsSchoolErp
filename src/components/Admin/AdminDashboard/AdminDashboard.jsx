@@ -1,5 +1,4 @@
-import Dashboard from "../Dashboard/Dashboard";
-
+import Dashboard from "../../Dashboard/Dashboard";
 
 export default function AdminDashboard(){
 
@@ -15,15 +14,6 @@ export default function AdminDashboard(){
     return(
             <>
             <Dashboard content = {content}/>
-            {/* footer */}
-        <hr className="mt-10"/>
-            <footer className="h-12 w-full px-10">
-                <ul className="flex justify-between items-center flex-wrap">
-                    <li>Contact</li>
-                    <li>About Us</li>
-                    <li>Privacy-Policy</li>
-                </ul>
-            </footer>
             </>
     )
 }

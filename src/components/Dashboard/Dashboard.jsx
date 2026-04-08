@@ -10,7 +10,6 @@ export default function Dashboard({content}){
         <HeroSection />
         {/* text = action */}
         <Pagedescriptor text="Action Centre"/>
-        
         {/* feature cards */}
         <div className="w-full  flex justify-center items-center my-2">
             <div className="flex flex-col md:flex-row md:max-w-200 gap-2 md:gap-5 justify-center flex-wrap w-full px-10 ">

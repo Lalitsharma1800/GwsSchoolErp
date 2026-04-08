@@ -1,3 +1,6 @@
+import { StudentDashboard } from "@/components";
+
+
 export const Student_dashboard_route = {
     path: "/student",
     lazy: async () => {
@@ -7,5 +10,11 @@ export const Student_dashboard_route = {
             loader: module.loader,
             ErrorBoundary: module.ErrorBoundary,
         };
-    }
+    },
+    children: [
+        {
+            path: "",
+            Component: StudentDashboard
+        }
+    ]
 }

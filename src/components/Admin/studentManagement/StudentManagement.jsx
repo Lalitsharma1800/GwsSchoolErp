@@ -1,4 +1,3 @@
-import Header from "../../Header/Header";
 import FacultyCard from "../../FacultyCard/FacultyCard";
 import { useState } from "react";
 

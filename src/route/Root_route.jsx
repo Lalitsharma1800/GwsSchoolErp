@@ -6,10 +6,9 @@ import {
             Login_route_2_path_login, // for /login
             Student_dashboard_route, 
         } from "./route_index";
-import { Admin_teacherManagement_route } from "./admin_routes/Admin_teacherManagement_route";
-
-import Dashboard from "@/components/Admin/Dashboard/Dashboard";
+import Dashboard from "@/components/Dashboard/Dashboard";
 import Root_LayOut from "@/Page/Root_LayOut";
+import {Teacher_dashoard_route} from "./teacher_routes/Teacher_dashboard_route";
 
 
 
@@ -19,16 +18,16 @@ export const Router = createBrowserRouter([
         
         Component: Root_LayOut,
         
-        errorElement: <div className="grid place-content-center">Internal Server Error</div>,
+        // errorElement: <div className="grid place-content-center">Internal Server error</div>,
         
         hydrateFallbackElement:<FallBack/>,
         
         children: [
-            Login_route,  // for "/"
+            Login_route,  // for "/"    
             Login_route_2_path_login,  // for "/login"
             Admin_parent_route,      // for "/admin"
             Student_dashboard_route,
-            Admin_teacherManagement_route,
+            Teacher_dashoard_route,
             {
                 path: "/hello",
                 children: [
@@ -43,7 +42,7 @@ export const Router = createBrowserRouter([
     },
     {
             path: "/*",
-            Component: Dashboard,
+            element: <div className="grid place-content-center h-screen text-2xl">Error 404, Page Not Found</div>,
             hydrateFallbackElement:<FallBack/>,
             // element: <div className="w-full h-screen fixed text-2xl text-black grid place-content-center">Error 404, Page Not Found</div>
     }

@@ -6,7 +6,6 @@ import { editTeacherData } from "../../../../updateApi"
 import { setTeacherInfo } from "../../../../store/teacherInfoSlice"
 import TeacherDetailsLine from "../TeacherDetailsLine.jsx/TeacherDetailsLine";
 import { delay } from "@/supabase";
-import validation from "@/inputValidation/inputValidation";
 
 
 

@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 import { authentication } from "@/supabase";
-export default async function student_loader(){
+export  async function student_loader(){
        try { 
 
         await authentication.getSession();

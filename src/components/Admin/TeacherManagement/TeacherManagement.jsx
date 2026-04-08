@@ -12,6 +12,7 @@ import FacultyCard from "./../../FacultyCard/FacultyCard"
 import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
 import getStudentData from "@/fetchApi/students/students";
 import Pagedescriptor from "@/components/pagedescriptor/Pagedescriptor";
+import Dashboard from "@/components/Dashboard/Dashboard";
 
 
 export default function TeacherManagement(){
@@ -123,7 +124,11 @@ const handleViewDetails = async (id,index) => {
         setIsDetailsLoading(false)
         setShowDetails(true)
         }
-};
+
+            const refresh = () => {
+
+            }
+    };
 
 return(    
     <>    
