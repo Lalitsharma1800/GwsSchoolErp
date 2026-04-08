@@ -1,4 +1,4 @@
-import { StudentDashboard } from "@/components";
+import StudentDashboard from "@/components/Student/StudentDashboard/StudentDashboard";
 
 
 export const Student_dashboard_route = {

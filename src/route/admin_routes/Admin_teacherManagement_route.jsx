@@ -1,5 +1,5 @@
 import {admin_lazy} from "../../Lazy/admin/admin_lazy"
-import { FallBack } from "@/components"
+import FallBack  from "../../components/FallBackElement"
 
 
 export const Admin_teacherManagement_route = {

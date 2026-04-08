@@ -1,13 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { FallBack } from "@/components";
+import FallBack from "../components/FallBackElement";
 import { Admin_parent_route } from "./admin_routes/admin_parent_route";
 import { 
             Login_route, 
             Login_route_2_path_login, // for /login
             Student_dashboard_route, 
         } from "./route_index";
-import Dashboard from "@/components/Dashboard/Dashboard";
-import Root_LayOut from "@/Page/Root_LayOut";
+import Root_LayOut from "../Page/Root_LayOut";
 import {Teacher_dashoard_route} from "./teacher_routes/Teacher_dashboard_route";
 
 

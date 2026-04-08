@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import React from "react";
-import { FallBack } from "@/components";
+import FallBack from "@/components/FallBackElement";
 
 export default function Root_LayOut(){
     

@@ -4,11 +4,10 @@ import { Outlet } from "react-router-dom";
 
 export default function StudentDashboardPage(){
                 const menuList = [
-            { href: "/teacher", label: "Dashboard", end: true},
-            { href: "/teacher/fees", label: "Fees", end: true},
-            { href: "/teacher/HR", label: "HR", end: true },
-            { href: "/teacher/ManageStudents", label: "Student", end: true },
-            { href: "/teacher/notices", label: "Notices", end: true },
+            { href: "/student", label: "Dashboard", end: true},
+            { href: "/student/fees", label: "Fees", end: false},
+            { href: "/student/attandence", label: "Student", end: false },
+            { href: "/student/notices", label: "Notices", end: false },
     ]
     return(
         <>

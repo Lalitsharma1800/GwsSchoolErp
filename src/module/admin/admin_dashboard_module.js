@@ -1,6 +1,6 @@
-import { AdminDashboard as Component } from "@/components";
-
+import AdminDashboard from "@/components/Admin/AdminDashboard/AdminDashboard";
 import {ErrorBoundary} from "@/components/ErrorBoundary"
 
-export default Component;
+ const Component = AdminDashboard; 
+ export default Component;
 export {ErrorBoundary};
