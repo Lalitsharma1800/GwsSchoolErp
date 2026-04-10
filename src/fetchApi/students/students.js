@@ -1,6 +1,4 @@
 import { supabase } from "../../supabase";
-import store from "../../store/store";
-
 
 class GetStudentData{
 
@@ -33,9 +31,6 @@ class GetStudentData{
             }
               throw new Error("No data found");
          }
-        
-
-         console.log(data);   
          return data;
   }
 
@@ -66,7 +61,6 @@ class GetStudentData{
                       }
                         throw new Error("No data found");
                 }
-            console.log(data);
             return data;
   }
 }
