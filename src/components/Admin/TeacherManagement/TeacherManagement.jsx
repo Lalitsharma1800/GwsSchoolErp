@@ -10,7 +10,6 @@ import { setTeacherInfo } from "../../../store/teacherInfoSlice";
 
 import FacultyCard from "./../../FacultyCard/FacultyCard"
 import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
-import getStudentData from "@/fetchApi/students/students";
 import Pagedescriptor from "@/components/pagedescriptor/Pagedescriptor";
 
 
@@ -62,7 +61,7 @@ const stats = [
 
 
  /* ----------------------------------
-     Fetch teachers list
+     Fetch teachers data/list
   -----------------------------------*/
 
 
@@ -70,6 +69,9 @@ const handleSearch = async () => {
     try{
         setIsListLoading(true)
         const teacher_List = await teacher_data();
+        teacher_List.map((data) => {
+                data.viewStatus = false;
+        })
         setTeacherList(teacher_List);
         setIsError(false);
     }
@@ -85,19 +87,17 @@ const handleSearch = async () => {
 };
   
   /* ----------------------------------
-     Fetch teacher details
+     Fetch individual teacher details
   -----------------------------------*/
 const handleViewDetails = async (id,index) => {
     
         try{
-            
-            await getStudentData.ForAll();
-            await getStudentData.getbyClass();
+            // loading spinner and remove details component from screen
             setShowDetails(false);
             setIsDetailsLoading(true);
 
             
-            await teacher_details(id) 
+            await teacher_details(id); 
 
             const row = teachersList[index];
             if (!row) return;
@@ -123,14 +123,6 @@ const handleViewDetails = async (id,index) => {
         setIsDetailsLoading(false)
         setShowDetails(true)
         }
-
-        const close = () => {
-
-        }
-
-            const refresh = () => {
-
-            }
     };
 
 return(    
@@ -148,8 +140,8 @@ return(
             {/* Stats */}
             <div className="m-3   flex  sm:flex-row justify-center items-center flex-wrap gap-x-3.5 gap-y-2">
                                 {
-                                    stats.map((stat) => (
-                                        <FacultyCard content={stat.content} count={stat.count} countLoading={stat.countLoading} />
+                                    stats.map((stat, index) => (
+                                        <FacultyCard key={index} content={stat.content} count={stat.count} countLoading={stat.countLoading} />
                                     ))
                                 }
             </div>
@@ -212,6 +204,7 @@ return(
                                                     className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer">
                                                         View
                                                 </button>
+
                                             </td>
                                         
                                         </tr>
@@ -257,7 +250,7 @@ return(
             {
                 isDetailsLoading  && <div 
                                 className="w-full  flex justify-center items-center">
-                                <div className=" m-1 w-8  h-8 border-2 bg-neutral-200 border-black border-t-transparent rounded-full animate-spin">
+                                <div className=" m-1 w-8  h-8 border-2  border-black border-t-transparent rounded-full animate-spin">
                                 </div>
                             </div>
             }

@@ -84,7 +84,7 @@ export async function teacher_details(id){
         gender: data[0].gender,
         subjects: data[0].subjects,
         qualification: data[0].qualification,
-        experience: data[0].experience,
+        experience: `${data[0].experience} years`,
         aadhaar: aadhaar,
         joined: data[0].joined,
       }))

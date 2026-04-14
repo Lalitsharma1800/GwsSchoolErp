@@ -20,13 +20,11 @@ export default function TeacherDetails({setTeacherList, setShowDetails}){
     const[isError, setIsError] = useState(false);
     const[errorMessage, setErrorMessage] = useState(null);
 
-    
+    // Runs only after saving the data, Not after fetching the details
     const handleSave = async () => {
 
         try{
             setLoading(true)
-
-            
 
             await editTeacherData(teacher);
             
@@ -40,6 +38,7 @@ export default function TeacherDetails({setTeacherList, setShowDetails}){
                                 name: teacher.name,
                                 phone: teacher.phone,
                             },
+                            viewStatus:true,
                             }
                         : row
                         )
