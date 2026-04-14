@@ -29,7 +29,8 @@ export default function ProfileBar(){
  
 
   return (
-    <DropdownMenu>
+ 
+      <DropdownMenu>
       {/* The Trigger is usually a Button or Avatar */}
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
@@ -40,7 +41,7 @@ export default function ProfileBar(){
       </DropdownMenuTrigger>
 
       {/* The Content houses all menu items */}
-      <DropdownMenuContent className="w-auto cursor-pointer">
+      <DropdownMenuContent className="w-auto cursor-pointer ">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator/>
         

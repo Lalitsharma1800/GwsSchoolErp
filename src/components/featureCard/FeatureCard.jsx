@@ -9,7 +9,7 @@ return(
         
   
 <div className="font-Inter font-semibold  w-full md:max-w-56 my-0 ">
-        <div className="flex justify-center items-center h-16 hover:bg-blue-950 hover:text-white lg:active:bg-blue-950">
+        <div className="flex justify-center items-center h-16 hover:bg-blue-950 hover:text-white active:bg-blue-950 active:text-white">
             <h2 className="cursor-pointer"><Link to={toLink}>{title}</Link></h2>
         </div>
 <div className="w-full border-b-4 border-dotted border-neutral-300 py-px" ></div>
