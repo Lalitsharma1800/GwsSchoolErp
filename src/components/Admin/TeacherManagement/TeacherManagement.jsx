@@ -12,7 +12,6 @@ import FacultyCard from "./../../FacultyCard/FacultyCard"
 import TeacherDetails from "../teacherdetailsComponent/TeacherDetails/TeacherDetailsComponent";
 import getStudentData from "@/fetchApi/students/students";
 import Pagedescriptor from "@/components/pagedescriptor/Pagedescriptor";
-import Dashboard from "@/components/Dashboard/Dashboard";
 
 
 export default function TeacherManagement(){
@@ -125,6 +124,10 @@ const handleViewDetails = async (id,index) => {
         setShowDetails(true)
         }
 
+        const close = () => {
+
+        }
+
             const refresh = () => {
 
             }
@@ -222,27 +225,34 @@ return(
 
                 <div className="px-3 mb-3 hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">
                     
-                    {/* search table button */}
-                    {!hasSearched &&   <div>
-                                        {!isListLoading &&  <button onClick={async () => {
-                                                                    await handleSearch()}} 
-                                                                className="cursor-pointer">
-                                                            Search
+                    {/* search and refresh button */}
+                    {
+                        !isListLoading && <div>
+                                            {
+                                                hasSearched &&  
+                                                        <button onClick={async () => {
+                                                                                        await handleSearch()}} 
+                                                                                    className="cursor-pointer">
+                                                                                refresh
                                                         </button>
-                                        }
-                                        {isListLoading && <div 
-                                                        className=" m-1 w-4  h-4 border-2  border-white border-t-transparent rounded-full animate-spin">
-                                                    </div>
-                                        }
-                                    </div>
+                                            }
+                                            {
+                                                !hasSearched && 
+                                                    <button onClick={async () => {
+                                                                        await handleSearch()}} 
+                                                                    className="cursor-pointer">
+                                                                Search
+                                                    </button>                                                   
+                                            }
+                                        </div>
                     }
-                    {/* print table button */}
-                    {hasSearched && <div>Print</div>}
+                    {/* Spinner while list load */}
+                    { isListLoading && <div className=" m-1 w-4  h-4 border-2  border-white border-t-transparent rounded-full animate-spin"></div> }                  
                 </div>
             </div>
                 {/* Details Section */}
             {
-                !isDetailsLoading && showDetails  && <TeacherDetails setTeacherList={setTeacherList}/>
+                !isDetailsLoading && showDetails  && <TeacherDetails setTeacherList={setTeacherList} setShowDetails={setShowDetails}/>
             }
             {
                 isDetailsLoading  && <div 

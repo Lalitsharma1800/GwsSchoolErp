@@ -9,7 +9,7 @@ import { delay } from "@/supabase";
 
 
 
-export default function TeacherDetails({setTeacherList}){
+export default function TeacherDetails({setTeacherList, setShowDetails}){
     const dispatch = useDispatch();
 
     const teacher = useSelector((state) => state.teacherInfo.teacherInfo);
@@ -142,11 +142,18 @@ export default function TeacherDetails({setTeacherList}){
             <div className="flex justify-center items-center"> 
                 {/*  this is edit button */}
                 {!edit && (
-                    <button 
-                        onClick={() => setEdit(true)}
-                        className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">
-                            Edit
-                    </button>
+                    <div className="flex gap-3">
+                        <button 
+                            onClick={() => setEdit(true)}
+                            className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">
+                                Edit
+                        </button>
+                        <button
+                            onClick={() => setShowDetails(false)}
+                            className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">
+                                Close
+                        </button>
+                    </div>
                 )}  
                  {/* this is save button */}
                 {edit  && 
