@@ -96,14 +96,6 @@ const handleViewDetails = async (id,index) => {
             setShowDetails(false);
             setIsDetailsLoading(true);
 
-            const data = [...teachersList];
-
-            data.map((user) => {
-                user.teachers.id === id ? user.viewStatus = true : user.viewStatus = false;
-            })
-
-            setTeacherList(data);
-            
             await teacher_details(id); 
 
             const row = teachersList[index];
@@ -119,6 +111,13 @@ const handleViewDetails = async (id,index) => {
                         phone: row.teachers?.phone,
                     })
                 )
+            const data = [...teachersList];
+
+            data.map((user) => {
+                user.teachers.id === id ? user.viewStatus = true : user.viewStatus = false;
+            })
+
+            setTeacherList(data);
                 setIsError(false);
                 
         }

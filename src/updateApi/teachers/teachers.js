@@ -54,7 +54,7 @@ export async function editTeacherData(teacher){
                         phone:  data[0]?.phone,
                         subject:  data[0]?.subjects,
                         qualification:  data[0]?.qualification,
-                        experience:  `${data[0]?.experience} years`,
+                        experience:  `${data[0]?.experience}`,
                         aadhaar: aadhaar
                     })
                 )

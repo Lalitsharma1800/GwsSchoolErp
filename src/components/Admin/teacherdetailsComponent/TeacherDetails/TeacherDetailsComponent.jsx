@@ -59,7 +59,7 @@ export default function TeacherDetails({setTeacherList, setShowDetails}){
 
     const updateField = (field) => (e) => dispatch(setTeacherInfo({ [field]: e.target.value }));
 
-    
+
 
     return(
         <div className="bg-white  m-3 p-5  sm:mx-12 gap-3 rounded flex flex-col justify-center ">                   
@@ -130,12 +130,12 @@ export default function TeacherDetails({setTeacherList, setShowDetails}){
                 />
 
                 <TeacherDetailsLine 
-                    detailsName={"Experience"} 
+                    detailsName={"Experience(years)"} 
                     detailsValue={teacher.experience} 
                     disabled={!edit} 
                     onChangeHandler={updateField("experience")}
                 />
-            </div>
+            </div>  
             
             {/*  save & edit button */}
             <div className="flex justify-center items-center"> 
