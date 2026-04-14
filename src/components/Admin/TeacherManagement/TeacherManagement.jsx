@@ -96,6 +96,13 @@ const handleViewDetails = async (id,index) => {
             setShowDetails(false);
             setIsDetailsLoading(true);
 
+            const data = [...teachersList];
+
+            data.map((user) => {
+                user.teachers.id === id ? user.viewStatus = true : user.viewStatus = false;
+            })
+
+            setTeacherList(data);
             
             await teacher_details(id); 
 
@@ -201,9 +208,11 @@ return(
                                             
                                             <td className="text-center whitespace-nowrap border border-black px-2">
                                                 <button onClick={ () =>{ handleViewDetails(column.teachers.id,index)}} 
-                                                    className="bg-neutral-500 text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer">
+                                                    className="bg-neutral-500 flex justify-center items-center text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer gap-2">
                                                         View
+                                                        {column.viewStatus && <div className="w-1 h-1 rounded-full text-2xl bg-red-500"></div>}
                                                 </button>
+                                                
 
                                             </td>
                                         
