@@ -30,6 +30,8 @@ export default function TeacherManagement(){
     const [isDetailsLoading, setIsDetailsLoading] = useState(false)
     const [showDetails, setShowDetails] = useState(false)
 
+    const[viewId, setViewId] = useState(null);
+
  /* ----------------------------------
      Fetch teacher count on mount
   -----------------------------------*/
@@ -111,13 +113,7 @@ const handleViewDetails = async (id,index) => {
                         phone: row.teachers?.phone,
                     })
                 )
-            const data = [...teachersList];
-
-            data.map((user) => {
-                user.teachers.id === id ? user.viewStatus = true : user.viewStatus = false;
-            })
-
-            setTeacherList(data);
+            setViewId(id);
                 setIsError(false);
                 
         }
@@ -209,7 +205,7 @@ return(
                                                 <button onClick={ () =>{ handleViewDetails(column.teachers.id,index)}} 
                                                     className="bg-neutral-500 flex justify-center items-center text-white m-1 px-2 rounded-2xl outline-black outline-1 cursor-pointer gap-2">
                                                         View
-                                                        {column.viewStatus && <div className="w-1 h-1 rounded-full text-2xl bg-red-500"></div>}
+                                                        {viewId === column.teachers.id && <div className="w-1 h-1 rounded-full text-2xl bg-red-500"></div>}
                                                 </button>
                                                 
 
