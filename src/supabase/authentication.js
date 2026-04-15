@@ -100,17 +100,17 @@ export class Authentication{
 
             if(error || !data){
                 console.log(error)
-                throw new Error("Invalid Credentials 1");
+                throw new Error("Invalid Credentials");
             }
             
                 const session = await this.getSession();
 
                 if(!session){
-                    throw new Error("Invalid Credential and session not found")
+                    throw new Error("Session not found, Please try again later.")
                 }
 
                     const user = await this.getUser();
-                    if(!user) throw new Error("Invalid Credentials, user not found")
+                    if(!user) throw new Error("User not found, Please try again later.")
 
                     else{
                         const role = await this.getRole(user.id)
