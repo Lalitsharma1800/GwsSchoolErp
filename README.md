@@ -112,6 +112,9 @@ Efficient state updates via Redux
 
 🔗 Live Demo
 
+demo gmail: admin123@gmail.com
+pass: pass123
+
 👉 https://gws-erp.netlify.app/
 
 📌 Future Improvements

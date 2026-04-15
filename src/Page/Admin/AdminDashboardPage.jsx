@@ -7,12 +7,9 @@ export default function AdminDashboardPage(){
         
     const menuList = [
             { href: "/admin", label: "Dashboard", end: true},
-            { href: "/admin/facultyManagement", label: "Faculty", end: true},
-            { href: "/admin/HR", label: "HR", end: true },
-            { href: "/admin/Student", label: "Student", end: true },
             { href: "/admin/Faculty", label: "Finance", end: true },
-    ]
-    
+            { href: "/admin/facultyManagement", label: "Faculty", end: false},
+                    ]
 return(
         <>
         <Navbar2 menuList={menuList}/>
