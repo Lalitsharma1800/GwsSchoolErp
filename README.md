@@ -1,16 +1,88 @@
-# React + Vite
+School ERP Mini System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A role-based School ERP system built with React that manages users, students, and teachers with secure authentication, structured state management, and optimized frontend performance.
 
-Currently, two official plugins are available:
+🚀 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a frontend-focused School ERP system designed to simulate real-world application architecture. It implements role-based access control, authentication, modular state management, and performance optimizations using modern React practices.
 
-## React Compiler
+🛠 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Frontend:
 
-## Expanding the ESLint configuration
+React (with functional components & hooks)
+JavaScript
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+State Management & Routing:
+
+Redux
+React Router
+
+Forms & Validation:
+
+React Hook Form
+
+Backend (BaaS):
+
+Supabase (Authentication, Database, APIs)
+
+Styling & UI:
+
+Tailwind CSS
+shadcn/ui
+
+Tools:
+
+Vite
+Git
+✨ Features
+Role-Based Access Control (RBAC)
+Restricts access to features and routes based on user roles (e.g., Admin, Teacher)
+Authentication & Session Management
+Secure login and session handling using Supabase Auth
+Protected Routing
+Route-level guards to prevent unauthorized access
+Centralized State Management
+Redux used to manage user sessions, roles, and shared application data
+Dynamic Forms with Validation
+Built using React Hook Form with optimized rendering and validation
+Backend Integration
+Supabase used for CRUD operations and real-time data interaction
+Performance Optimization
+Implemented lazy loading and code splitting to improve initial load time
+📦 Modules
+User Management (Admin)
+Manage user roles and access
+Student Management
+Add, update, and manage student records
+Teacher Management
+Manage teacher data and related operations
+Role-Based Dashboard
+Personalized dashboard based on user role
+🔐 Authentication Flow
+User logs in via Supabase Auth
+Session is stored and managed globally (Redux)
+User role determines accessible routes and features
+Protected routes ensure unauthorized users cannot access restricted pages
+⚙️ Application Architecture
+Component-based modular structure
+Centralized global state using Redux
+Route-based code splitting for performance
+Separation of concerns between UI, logic, and data handling
+📈 Performance Considerations
+Lazy loading of routes to reduce bundle size
+Minimized re-renders using React Hook Form
+Efficient state updates via Redux
+🔗 Live Demo
+
+👉 https://gws-erp.netlify.app/
+
+📌 Future Improvements
+Add pagination and search optimization
+Improve error handling and retry mechanisms
+Add unit and integration testing
+Enhance UI/UX with loading states and skeleton screens
+👨‍💻 Author
+
+Lalit Sharma
+Frontend Developer
