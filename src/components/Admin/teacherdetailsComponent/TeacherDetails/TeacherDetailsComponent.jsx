@@ -9,7 +9,7 @@ import { delay } from "@/supabase";
 
 
 
-export default function TeacherDetails({setTeacherList, setShowDetails}){
+export default function TeacherDetails({setTeacherList, setShowDetails,  setView}){
     const dispatch = useDispatch();
 
     const teacher = useSelector((state) => state.teacherInfo.teacherInfo);
@@ -148,7 +148,10 @@ export default function TeacherDetails({setTeacherList, setShowDetails}){
                                 Edit
                         </button>
                         <button
-                            onClick={() => setShowDetails(false)}
+                            onClick={() => {
+                                setShowDetails(false)
+                                setView(null);
+                            }}
                             className="px-2  hover:bg-blue-800 rounded-2xl text-center text-white bg-blue-700 cursor-pointer border border-black">
                                 Close
                         </button>

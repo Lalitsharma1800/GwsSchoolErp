@@ -113,7 +113,7 @@ const handleViewDetails = async (id,index) => {
                         phone: row.teachers?.phone,
                     })
                 )
-            setViewId(id);
+                setViewId(id);
                 setIsError(false);
                 
         }
@@ -249,7 +249,7 @@ return(
             </div>
                 {/* Details Section */}
             {
-                !isDetailsLoading && showDetails  && <TeacherDetails setTeacherList={setTeacherList} setShowDetails={setShowDetails}/>
+                !isDetailsLoading && showDetails  && <TeacherDetails setTeacherList={setTeacherList} setShowDetails={setShowDetails} setView={setViewId}/>
             }
             {
                 isDetailsLoading  && <div 
