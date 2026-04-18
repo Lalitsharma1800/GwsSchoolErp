@@ -7,6 +7,6 @@ export default function FallBack(){
         <div className="grid  place-content-center h-screen">
             <Logo/>
              <Spinner className="size-8 inline ml-2"/>
-             </div>
+        </div>
     )
 }

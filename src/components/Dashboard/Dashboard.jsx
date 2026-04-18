@@ -15,7 +15,7 @@ export default function Dashboard({content}){
             <div className="flex flex-col md:flex-row md:max-w-200 gap-2 md:gap-5 justify-center flex-wrap w-full px-10 ">
                 {
                     featureCardContent.map((content2,index) => (
-                        <FeatureCard key={index} title={content2.title} toLink={content2.toLink}/>
+                        <FeatureCard key={index} title={content2.title} toLink={content2.toLink} message={content2.message}/>
                     ))
                 }
             </div> 
