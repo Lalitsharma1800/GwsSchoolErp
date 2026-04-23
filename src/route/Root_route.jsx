@@ -17,7 +17,7 @@ export const Router = createBrowserRouter([
         
         Component: Root_LayOut,
         
-        // errorElement: <div className="grid place-content-center">Internal Server error</div>,
+        errorElement: <div className="grid place-content-center">Internal Server error</div>,
         
         hydrateFallbackElement:<FallBack/>,
         
