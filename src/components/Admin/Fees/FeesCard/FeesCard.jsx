@@ -1,6 +1,6 @@
 export default function FeesCard({
     bgColor = "white",
-     duesStatus,
+    duesStatus,
     duesStatusIcon,
     amount,}
 ){
