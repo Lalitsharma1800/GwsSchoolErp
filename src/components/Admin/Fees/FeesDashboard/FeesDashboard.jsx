@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 export default function FeesDashboard(){
 
-    const totalDues = "2,00,00,000";
+    const totalDues = "2,000,000,000";
     const collectedDues = "1,00,00,000";
     const pendingDues = "1,00,00,00,000";
     const [searchedBy, setSearchedBy] = useState(null);
